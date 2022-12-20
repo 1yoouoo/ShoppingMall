@@ -3,21 +3,34 @@
   position: fixed;
   width: 100vw;
   height: 70px;
-  border: 1px solid #000;
-  &-logo {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 25px;
-    text-align: center;
-  }
   &-form {
+    &__logo {
+      position: fixed;
+      top: 25px;
+      right: 0;
+      left: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      // pointer-events: none;
+      b {
+        cursor: pointer;
+        z-index: 100;
+        &:hover {
+          color: red;
+        }
+      }
+    }
+    position: relative;
     display: flex;
     height: 50px;
-    margin: 10px;
+    margin: 10px 25px;
     justify-content: space-between;
     align-items: center;
     &__left {
+      display: flex;
     }
     &__right {
       display: flex;
@@ -33,5 +46,26 @@
         height: 17px;
       }
     }
+  }
+}
+.navigator-item {
+  position: relative;
+  z-index: 1;
+  font-size: 0.725rem;
+  font-weight: 500;
+  margin-right: 13px;
+  height: 40px;
+  line-height: 40px;
+  cursor: pointer;
+  &__title {
+  }
+  &__list {
+    display: flex;
+    position: absolute;
+    flex-direction: column;
+    line-height: 20px;
+  }
+  &__item {
+    font-size: 0.625rem;
   }
 }

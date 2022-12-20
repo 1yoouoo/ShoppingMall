@@ -1,7 +1,15 @@
 body {
   margin: 0;
+  font-size: 11px;
   font-family: "Montserrat", "Lato", arial, sans-serif, "Nanum Gothic", Gulim,
     Verdana, Dotum, AppleGothic, sans-serif;
   -webkit-font-smoothing: antialiased;
   height: 100vw;
+  letter-spacing: 0.05rem;
+}
+ul {
+  padding: 0;
+}
+li {
+  list-style: none;
 }

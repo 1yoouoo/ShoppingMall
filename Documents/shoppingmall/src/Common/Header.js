@@ -1,13 +1,31 @@
+import { useState } from "react";
+import NavigatorItem from "../Components/NavigatorItem";
+
 const Header = () => {
+  const shopList = [
+    "ALL PADDING 5%",
+    "ALL",
+    "NEW 5%",
+    "BEST",
+    "OUTER",
+    "TOP",
+    "BOTTOM",
+    "SALE",
+    "ACC",
+  ];
+  const communityList = ["NOTICE", "Q&A", "REVIEW"];
+  const myPageList = ["주문조회", "관심상품", "적립금", "배송조회"];
   return (
-    <div className="header">
-      <div className="header-logo">ZOMBO</div>
+    <header className="header">
       <div className="header-form">
-        <div className="header-form__left">
-          <span>item 1</span>
-          <span>item 2 </span>
-          <span>item 3</span>
+        <div className="header-form__logo">
+          <b>ZOMBO</b>
         </div>
+        <ul className="header-form__left">
+          <NavigatorItem title="SHOP" items={shopList} />
+          <NavigatorItem title="COMMUNITY" items={communityList} />
+          <NavigatorItem title="MY PAGE" items={myPageList} />
+        </ul>
         <div className="header-form__right">
           <span className="header-form__search-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -26,7 +44,7 @@ const Header = () => {
           </span>
         </div>
       </div>
-    </div>
+    </header>
   );
 };
 
