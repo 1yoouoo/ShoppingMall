@@ -6,7 +6,7 @@
   &-form {
     &__logo {
       position: fixed;
-      top: 25px;
+      top: 16px;
       right: 0;
       left: 0;
       display: flex;
@@ -14,11 +14,14 @@
       justify-content: center;
       font-size: 1rem;
       font-weight: 800;
+      transition: all 0.4s;
       b {
         cursor: pointer;
-        z-index: 100;
+        padding: 9px 16px;
+        transition: all 0.3s;
         &:hover {
-          color: red;
+          color: white;
+          background-color: black;
         }
       }
     }
