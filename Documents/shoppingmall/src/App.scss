@@ -14,7 +14,6 @@
       justify-content: center;
       font-size: 1rem;
       font-weight: 800;
-      // pointer-events: none;
       b {
         cursor: pointer;
         z-index: 100;
@@ -57,15 +56,32 @@
   height: 40px;
   line-height: 40px;
   cursor: pointer;
+  &:hover {
+    > .navigator-item__title {
+      background-color: black;
+      color: white;
+    }
+    > .navigator-item__list {
+      display: flex;
+    }
+  }
   &__title {
+    padding: 6px 8px;
+    border-radius: 3px;
+    transition: all 0.4s;
   }
   &__list {
-    display: flex;
+    padding: 6px 8px;
+    min-width: 100px;
+    display: none;
     position: absolute;
     flex-direction: column;
     line-height: 20px;
   }
   &__item {
     font-size: 0.625rem;
+    &:hover {
+      color: rgb(90, 90, 90);
+    }
   }
 }
