@@ -134,12 +134,11 @@
 // HOMEPAGE
 .homepage {
   height: 100vw;
-  background-color: burlywood;
   &__form {
     display: flex;
     max-width: 900px;
     min-width: 600px;
-    padding: 8% 12%;
+    padding: 0 12%;
     margin: auto;
     justify-content: center;
     & div {
@@ -147,11 +146,42 @@
       width: 49%;
       text-align: center;
     }
-    &--img img {
+    &--img > img {
+      position: relative;
       max-width: 100%;
       height: auto;
       object-fit: contain;
-      // width: $wallpaper;
+      &:hover + .homepage__form--wrapper {
+        background-color: red;
+        filter: blur(4px);
+      }
+    }
+    &--wrapper {
+      display: inline-block;
+      position: relative;
+      z-index: 1;
+      top: 50%;
+      cursor: pointer;
+      &:hover + #wallpaper {
+        filter: blur(2px);
+      }
+    }
+    &--text {
+      display: block;
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+    }
+    &--button {
+      margin-top: 10%;
+      letter-spacing: 0.003rem;
+      display: inline-block;
+      padding: 2px 12px;
+      font-size: 16px;
+      background: none;
+      color: #fff;
+      cursor: pointer;
+      border: 1px solid #fff;
     }
   }
 }
