@@ -1,8 +1,10 @@
 import { useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import StyledButton from "../Components/Button";
 
 const SignInPage = () => {
   // hook
+  const navigate = useNavigate();
   const idInput = useRef();
   const passwordInput = useRef();
   const [inputValue, setInputValue] = useState({
@@ -19,7 +21,9 @@ const SignInPage = () => {
     console.log(idInput);
   };
   const onClickLogIn = () => {};
-  const onClickJoinMember = () => {};
+  const onClickJoinMember = () => {
+    navigate("/signup");
+  };
 
   return (
     <div className="loginpage">
@@ -60,7 +64,12 @@ const SignInPage = () => {
                 -SEARCH PASSWORD
               </span>
             </div>
-            <StyledButton type="button" background="default" color="black">
+            <StyledButton
+              type="button"
+              background="default"
+              color="black"
+              onClick={onClickJoinMember}
+            >
               JOIN MEMBER
             </StyledButton>
           </div>

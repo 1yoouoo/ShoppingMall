@@ -129,9 +129,14 @@
 // FOOTER
 .footer {
   position: relative;
+  width: 100%;
   z-index: -5;
   background-color: rgba(0, 0, 0, 0.2);
   color: #fff;
+  &__text {
+    display: inline-block;
+    width: fit-content;
+  }
 }
 
 // HOMEPAGE
@@ -252,4 +257,14 @@
       cursor: pointer;
     }
   }
+}
+
+// SIGN UP
+.signup {
+  background-color: aquamarine;
+  margin: auto;
+  width: 800px;
+  min-width: 500px;
+  height: 400px;
+  min-height: 300px;
 }

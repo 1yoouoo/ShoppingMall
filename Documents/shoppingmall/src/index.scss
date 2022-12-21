@@ -6,7 +6,9 @@ body {
     Verdana, Dotum, AppleGothic, sans-serif;
   -webkit-font-smoothing: antialiased;
   height: 100vw;
+  width: 100%;
   letter-spacing: 0.07rem;
+  overflow: hidden;
 }
 ul {
   padding: 0;
