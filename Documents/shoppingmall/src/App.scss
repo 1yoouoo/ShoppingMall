@@ -205,7 +205,6 @@
     border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   }
   &__form {
-    border: 1px solid #000;
     margin: 20% 25%;
     width: 250px;
     height: 300px;
@@ -226,6 +225,7 @@
     }
 
     &--text {
+      margin-left: 2px;
       font-size: 9px;
       margin-bottom: 5px;
     }
