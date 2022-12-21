@@ -1,7 +1,6 @@
 @import "./scss/mixin";
 
 // HEADER
-
 .header {
   position: fixed;
   z-index: 5;
@@ -49,6 +48,9 @@
       }
     }
     &__icon {
+      &--menubar {
+        display: none;
+      }
       &--search {
         position: absolute;
         width: 215px;
@@ -82,6 +84,38 @@
         cursor: pointer;
         transform: translate(5px, 2px);
         width: 17px;
+      }
+    }
+  }
+  @include mobile {
+    &-form {
+      &__left {
+        align-items: center;
+      }
+      &__right span {
+        margin-right: 5px;
+      }
+      &__icon {
+        &--menubar {
+          z-index: 1;
+          cursor: pointer;
+          background-color: #fff;
+          display: block;
+          width: 19px;
+          padding: 6px 10px 4px 10px;
+          transition: all 0.4s;
+          &:hover {
+            filter: invert(100%);
+          }
+        }
+        &--search {
+          position: relative;
+          right: 0;
+          width: 20px;
+          input {
+            display: none;
+          }
+        }
       }
     }
   }
@@ -123,6 +157,9 @@
     &:hover {
       color: rgb(90, 90, 90);
     }
+  }
+  @include mobile {
+    display: none;
   }
 }
 
