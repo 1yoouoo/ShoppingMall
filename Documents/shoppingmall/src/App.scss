@@ -230,55 +230,162 @@
 
 // HOMEPAGE
 .homepage {
-  height: 100vw;
-  &__form {
-    display: flex;
-    max-width: 900px;
-    min-width: 600px;
-    padding: 0 12%;
-    margin: auto;
-    justify-content: center;
-    & div {
-      margin: 0 0 0 1%;
-      width: 49%;
-      text-align: center;
-    }
-    &--img > img {
-      position: relative;
-      max-width: 100%;
-      height: auto;
-      object-fit: contain;
-      &:hover + .homepage__form--wrapper {
-        background-color: red;
-        filter: blur(4px);
+  width: 100%;
+  height: 100%;
+  @include desktop {
+    &__left {
+      &--icon {
+        display: none;
+        &-invisible {
+          display: none;
+        }
       }
     }
-    &--wrapper {
-      display: inline-block;
-      position: relative;
-      z-index: 1;
-      top: 50%;
-      cursor: pointer;
-      &:hover + #wallpaper {
-        filter: blur(2px);
+    &__right {
+      &--icon {
+        display: none;
+        &-invisible {
+          display: none;
+        }
       }
     }
-    &--text {
-      display: block;
-      font-size: 28px;
-      font-weight: 800;
-      color: #fff;
+    &__form {
+      display: flex;
+      max-width: 900px;
+      min-width: 600px;
+      padding: 0 12%;
+      margin: auto;
+      justify-content: center;
+      &--img {
+        margin: 0 0 0 1%;
+        width: 49%;
+        text-align: center;
+      }
+      &--img > img {
+        position: relative;
+        max-width: 100%;
+        height: auto;
+        object-fit: contain;
+        &:hover + .homepage__form--wrapper {
+          background-color: red;
+          filter: blur(4px);
+        }
+      }
+      &--wrapper {
+        display: inline-block;
+        position: relative;
+        z-index: 1;
+        top: 50%;
+        cursor: pointer;
+        &:hover + #wallpaper {
+          filter: blur(2px);
+        }
+      }
+      &--text {
+        display: block;
+        font-size: 28px;
+        font-weight: 800;
+        color: #fff;
+      }
+      &--button {
+        margin-top: 10%;
+        letter-spacing: 0.003rem;
+        display: inline-block;
+        padding: 2px 12px;
+        font-size: 16px;
+        background: none;
+        color: #fff;
+        cursor: pointer;
+        border: 1px solid #fff;
+      }
     }
-    &--button {
-      margin-top: 10%;
-      letter-spacing: 0.003rem;
-      display: inline-block;
-      padding: 2px 12px;
-      font-size: 16px;
-      background: none;
+  }
+  @include mobile {
+    &__form {
+      display: flex;
+      min-width: 196%;
+      justify-content: center;
+      &--img {
+        margin: 0 0 0 1%;
+        width: 49%;
+        transition: all 1s ease-out;
+      }
+      &--img > img {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        height: auto;
+        object-fit: contain;
+        &:hover + .homepage__form--wrapper {
+          background-color: red;
+          filter: blur(4px);
+        }
+      }
+      &--wrapper {
+        margin: 0 0 0 1%;
+        align-items: center;
+        width: 100%;
+        text-align: center;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        z-index: 1;
+        margin: auto;
+        top: 50%;
+      }
+      &--text {
+        display: block;
+        font-size: 28px;
+        font-weight: 800;
+        color: #fff;
+      }
+      &--button {
+        margin-top: 10%;
+        letter-spacing: 0.003rem;
+        display: inline-block;
+        padding: 2px 12px;
+        font-size: 16px;
+        background: none;
+        color: #fff;
+        border: 1px solid #fff;
+        pointer-events: none;
+      }
+      &--right {
+        cursor: pointer;
+        margin-right: 5px;
+        svg {
+          position: relative;
+          width: 30px;
+          filter: invert(100%);
+        }
+      }
+      &--left {
+        cursor: pointer;
+        margin-left: 5px;
+        svg {
+          position: relative;
+          width: 30px;
+          filter: invert(100%);
+        }
+      }
+    }
+  }
+  &__right {
+    &--icon {
       color: #fff;
-      cursor: pointer;
-      border: 1px solid #fff;
+      margin-right: 10px;
+    }
+    &--icon-invisible {
+      visibility: hidden;
+    }
+  }
+  &__left {
+    &--icon {
+      color: #fff;
+      margin-left: 10px;
+    }
+    &--icon-invisible {
+      visibility: hidden;
     }
   }
 }
