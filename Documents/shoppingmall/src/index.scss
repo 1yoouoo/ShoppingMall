@@ -7,11 +7,12 @@ body {
   font-family: "Montserrat", "Lato", arial, sans-serif, "Nanum Gothic", Gulim,
     Verdana, Dotum, AppleGothic, sans-serif;
   -webkit-font-smoothing: antialiased;
-  height: 200vw;
+  height: 100vw;
   width: 100%;
   letter-spacing: 0.07rem;
   @include mobile {
-    // overflow: hidden;
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
   }
 }
 ul {
