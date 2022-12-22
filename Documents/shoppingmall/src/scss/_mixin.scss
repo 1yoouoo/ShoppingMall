@@ -8,7 +8,7 @@
 }
 
 @mixin desktop {
-  @media (min-width: #{$breakpoint-desktop}) {
+  @media (min-width: #{$breakpoint-tablet}) {
     @content;
   }
 }
