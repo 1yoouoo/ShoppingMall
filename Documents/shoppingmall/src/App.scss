@@ -101,8 +101,8 @@
       &__menubar {
         &--list {
           position: absolute;
-          // display: none;
           transform: translate(31.5px, 35px);
+          background-color: #000;
         }
       }
       &__icon {
@@ -114,11 +114,9 @@
           width: 19px;
           padding: 6px 10px 4px 10px;
           transition: all 0.4s;
-          &:hover {
+          &:hover,
+          .hover {
             filter: invert(100%);
-            + .header-form__menubar--list {
-              display: block;
-            }
           }
         }
         &--search {
@@ -133,6 +131,7 @@
     }
   }
 }
+
 .navigator-item {
   position: relative;
   z-index: 1;
