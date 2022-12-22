@@ -7,22 +7,8 @@
   }
 }
 
-@mixin tablet {
-  @media (min-width: #{$breakpoint-tablet}) and (max-width: #{$breakpoint-desktop - 1px}) {
-    @content;
-  }
-}
-
 @mixin desktop {
   @media (min-width: #{$breakpoint-desktop}) {
-    @content;
-  }
-}
-
-////excepetion
-
-@mixin wallpaper {
-  @media (min-width: #{$exception-wallpaper}) {
     @content;
   }
 }

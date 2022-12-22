@@ -1,6 +1,6 @@
-const NavigatorItem = ({ title, items }) => {
+const NavigatorItem = ({ title, items, className }) => {
   return (
-    <li className="navigator-item">
+    <li className={className}>
       <span className="navigator-item__title">{title}</span>
       <ul className="navigator-item__list">
         {items && // Undefined 방지
