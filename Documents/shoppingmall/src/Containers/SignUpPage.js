@@ -40,7 +40,7 @@ const SignUpPage = () => {
           </div>
         </form>
       </div>
-      <div>이용가입 약관 --</div>
+      <div>test</div>
       <StyledButton />
     </div>
   );
