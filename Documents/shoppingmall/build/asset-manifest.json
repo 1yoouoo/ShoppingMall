@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/static/css/main.dc84c0d8.css",
+    "main.js": "/static/js/main.c4108fd1.js",
+    "static/media/zomboid_wallpaper_1.jpeg": "/static/media/zomboid_wallpaper_1.41fa9768fe2cb5029393.jpeg",
+    "static/media/zomboid_wallpaper_2.jpeg": "/static/media/zomboid_wallpaper_2.54e62eafdf3ed0d711aa.jpeg",
+    "index.html": "/index.html",
+    "main.dc84c0d8.css.map": "/static/css/main.dc84c0d8.css.map",
+    "main.c4108fd1.js.map": "/static/js/main.c4108fd1.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc84c0d8.css",
+    "static/js/main.c4108fd1.js"
+  ]
+}
