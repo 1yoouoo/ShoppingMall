@@ -3,8 +3,6 @@ import { useState } from "react";
 const HomePage = () => {
   //state
   const [slide, setSlide] = useState(0);
-  //function
-  const onClickRight = () => {};
   return (
     <div className="homepage">
       <form className="homepage__form">
