@@ -538,20 +538,9 @@
         }
       }
       :nth-child(5) {
-        input {
-          margin-left: 5px;
-          margin-right: 5px;
-          width: 50px;
-        }
-        select {
-          width: 50px;
-          font-size: 11px;
-          height: 25px;
-          border: 1px solid rgba(0, 0, 0, 0.2);
-          margin-right: 5px;
-        }
         button {
-          height: 25px;
+          margin: 0 10px;
+          height: 24px;
           background-color: #fff;
           border: 1px solid rgba(0, 0, 0, 0.2);
           font-size: 11px;
