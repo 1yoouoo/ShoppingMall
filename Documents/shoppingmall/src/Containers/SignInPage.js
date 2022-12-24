@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import StyledButton from "../Components/Button";
+import StyledButton from "../Components/StyledButton";
 
 const SignInPage = () => {
   // hook
