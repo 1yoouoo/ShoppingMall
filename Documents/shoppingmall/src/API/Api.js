@@ -28,7 +28,6 @@ const API = {
     } else {
       console.log("error", data?.status);
     }
-    console.log(data);
   },
 };
 

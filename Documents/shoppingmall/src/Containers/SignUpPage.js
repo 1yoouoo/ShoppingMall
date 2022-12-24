@@ -1,14 +1,15 @@
 import API from "../API/Api";
 import { useState } from "react";
 import StyledButton from "../Components/StyledButton";
+import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
+  const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
     login_id: "",
     password: "",
-    password_check: "",
-    phone_number: "010",
     name: "",
+    phone_number: "010",
     email: "",
   });
   const onChangeValue = (e) => {
@@ -25,11 +26,17 @@ const SignUpPage = () => {
     API.signup(
       inputValue.login_id,
       inputValue.password,
-      inputValue.phone_number,
       inputValue.name,
+      inputValue.phone_number,
       inputValue.email
     ).then((data) => {
-      console.log(data);
+      console.log(data.data);
+      if (data.data.validate === null) {
+        alert(data.data.error?.message);
+      } else {
+        alert("회원가입 성공 !");
+        navigate("/signin");
+      }
     });
   };
 
@@ -48,7 +55,7 @@ const SignUpPage = () => {
                   onChange={onChangeValue}
                   value={inputValue.login_id}
                 />
-                <span>(영어소문자/숫자, 4~16자)</span>
+                <span>(영어소문자/숫자, 8글자 이상)</span>
               </td>
             </tr>
             {/* 비밀번호 */}
@@ -60,22 +67,10 @@ const SignUpPage = () => {
                   onChange={onChangeValue}
                   value={inputValue.password}
                 />
-                <span>
-                  (영문 대소문자/숫자/특수문자 중 2가지 이상 조합, 10자~16자)
-                </span>
+                <span>(8글자 이상, 대문자 포함)</span>
               </td>
             </tr>
-            {/* 비밀번호 확인 */}
-            <tr>
-              <td>비밀번호확인</td>
-              <td>
-                <input
-                  name="password_check"
-                  onChange={onChangeValue}
-                  value={inputValue.password_check}
-                />
-              </td>
-            </tr>
+
             {/* 이름 */}
             <tr>
               <td>이름</td>
