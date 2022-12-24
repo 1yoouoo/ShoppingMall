@@ -532,6 +532,9 @@
           height: 40px;
           border: 1px solid rgba(0, 0, 0, 0.2);
           padding-left: 15px;
+          span {
+            margin-left: 5px;
+          }
         }
       }
       :nth-child(5) {
@@ -554,6 +557,30 @@
           font-size: 11px;
           font-weight: 600;
         }
+      }
+    }
+  }
+  &__button {
+    width: 100%;
+    margin: auto;
+    margin-top: 10px;
+    text-align: center;
+    button {
+      font-size: 11px;
+      letter-spacing: 0.09rem;
+    }
+  }
+
+  @include mobile {
+    width: 100vw;
+    min-width: 100vw;
+    margin: auto;
+    &__form {
+      margin: 5%;
+      width: 90%;
+
+      &--table {
+        width: 100%;
       }
     }
   }

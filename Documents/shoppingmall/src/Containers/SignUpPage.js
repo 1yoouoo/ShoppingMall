@@ -66,8 +66,11 @@ const SignUpPage = () => {
           </tr>
         </table>
       </div>
-      <div>test</div>
-      <StyledButton />
+      <div className="signup__button">
+        <StyledButton background="black" color="white">
+          JOIN MEMBER
+        </StyledButton>
+      </div>
     </div>
   );
 };
