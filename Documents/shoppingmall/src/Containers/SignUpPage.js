@@ -22,6 +22,7 @@ const SignUpPage = () => {
     console.log(inputValue);
   };
 
+  // API CALL
   const handleSubmit = () => {
     API.signup(
       inputValue.login_id,

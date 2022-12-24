@@ -1,5 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../API/Api";
 import StyledButton from "../Components/StyledButton";
 
 const SignInPage = () => {
@@ -8,7 +9,7 @@ const SignInPage = () => {
   const idInput = useRef();
   const passwordInput = useRef();
   const [inputValue, setInputValue] = useState({
-    id: "",
+    login_id: "",
     password: "",
   });
 
@@ -20,9 +21,15 @@ const SignInPage = () => {
     });
     console.log(idInput);
   };
-  const onClickLogIn = () => {};
   const onClickJoinMember = () => {
     navigate("/signup");
+  };
+
+  // API CALL
+  const handleSubmit = () => {
+    API.signin(inputValue.login_id, inputValue.password).then((data) => {
+      console.log(data.data);
+    });
   };
 
   return (
@@ -34,8 +41,8 @@ const SignInPage = () => {
               <label className="loginpage__form--text">ID</label>
               <input
                 className="loginpage__form--input"
-                name="id"
-                value={inputValue.id}
+                name="login_id"
+                value={inputValue.login_id}
                 ref={idInput}
                 onChange={onChange}
               />
@@ -53,7 +60,7 @@ const SignInPage = () => {
             <StyledButton
               background="black"
               color="white"
-              onClick={onClickLogIn}
+              onClick={handleSubmit}
               type="button"
             >
               LOG IN

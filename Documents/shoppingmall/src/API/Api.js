@@ -29,6 +29,21 @@ const API = {
       console.log("error", data?.status);
     }
   },
+  signin: async (login_id, password) => {
+    const data = await axios.post(
+      `${API_base}/login`,
+      {
+        login_id: login_id,
+        password: password,
+      },
+      { withCredentials: true }
+    );
+    if (data.status === 200) {
+      return data;
+    } else {
+      console.log("error", data.status);
+    }
+  },
 };
 
 export default API;
