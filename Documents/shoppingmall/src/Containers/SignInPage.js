@@ -29,7 +29,7 @@ const SignInPage = () => {
   const handleSubmit = () => {
     API.signin(inputValue.login_id, inputValue.password).then((data) => {
       console.log(data);
-      console.log(data.headers.get("Authorization"));
+      console.log(data.headers.token);
     });
   };
 
