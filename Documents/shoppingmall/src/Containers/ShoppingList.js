@@ -13,6 +13,12 @@ const ShoppingList = () => {
       title: "제목2 테스트 입니다",
       price: "49,000",
     },
+    {
+      id: 3,
+      img_src: require("../Assets/shopping-list-sample-2.jpeg"),
+      title: "제목3 테스트 입니다",
+      price: "59,000",
+    },
   ];
   return (
     <div className="shopping-list">

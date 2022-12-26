@@ -6,6 +6,7 @@ import SignInPage from "./Containers/SignInPage";
 import SignUpPage from "./Containers/SignUpPage";
 import HomePage from "./Containers/HomePage";
 import ShopingPage from "./Containers/ShoppingPage";
+import ProductRegistrationPage from "./Containers/ProductRegistrationPage";
 
 const Routing = () => {
   return (
@@ -15,6 +16,11 @@ const Routing = () => {
       <Route exact path="/signin" element={<SignInPage />} />
       <Route exact path="/signup" element={<SignUpPage />} />
       <Route exact path="/shop" element={<ShopingPage />} />
+      <Route
+        exact
+        path="/productregistration"
+        element={<ProductRegistrationPage />}
+      />
     </Routes>
   );
 };
