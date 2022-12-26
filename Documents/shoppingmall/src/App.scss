@@ -655,6 +655,9 @@
     margin: 5%;
     height: 100vh;
     min-width: 600px;
+    &--sample img {
+      width: 80%;
+    }
     &--left {
       width: 50%;
       min-width: 40%;
