@@ -578,7 +578,59 @@
 // SHOP
 .shopping-category {
   margin: 20% 15% 10% 15%;
+  @include mobile {
+    margin: 20% 5% 10% 5%;
+  }
   &__form {
     text-align: center;
+    span {
+      @include mobile {
+        font-size: 10px;
+      }
+    }
+  }
+}
+
+// SHOP LIST
+.shopping-list {
+  margin: 10%;
+  &__form {
+    margin: auto;
+    &--top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      margin-bottom: 5%;
+    }
+    &--bottom {
+      background-color: bisque;
+      width: 100%;
+      column-count: 2;
+      @include mobile {
+        column-count: 1;
+      }
+    }
+  }
+  &__top {
+    &--total {
+    }
+    &--sort {
+      color: #999;
+      margin-left: 5px;
+      cursor: pointer;
+      transition: all 0.3s;
+      &:hover {
+        color: #000;
+      }
+    }
+  }
+  &__item {
+    display: flex;
+    flex-direction: column;
+    break-inside: avoid-column;
+    img {
+      width: 100%;
+      min-width: 300px;
+    }
   }
 }

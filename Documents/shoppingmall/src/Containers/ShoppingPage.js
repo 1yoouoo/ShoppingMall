@@ -1,4 +1,5 @@
 import StyledCategory from "../Components/StyledCategory";
+import ShoppingList from "./ShoppingList";
 
 const ShopingPage = () => {
   // state
@@ -7,13 +8,17 @@ const ShopingPage = () => {
   //function
 
   return (
-    <div className="shopping-category">
-      <div className="shopping-category__form">
-        {categoryList.map((category) => {
-          return <StyledCategory title={category} key={category} />;
-        })}
+    <>
+      <div className="shopping-category">
+        <div className="shopping-category__form">
+          {categoryList.map((category) => {
+            return <StyledCategory title={category} key={category} />;
+          })}
+        </div>
       </div>
-    </div>
+
+      <ShoppingList />
+    </>
   );
 };
 
