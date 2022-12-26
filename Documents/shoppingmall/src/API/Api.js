@@ -44,6 +44,19 @@ const API = {
       console.log("error", data.status);
     }
   },
+
+  dummyList: {
+    item1: {
+      img_src: "../Assets/shopping-list-sample-1.jpeg",
+      title: "제목1 테스트 입니다",
+      price: "39,000",
+    },
+    item2: {
+      img_src: "../Assets/shopping-list-sample-2.jpeg",
+      title: "제목2 테스트 입니다",
+      price: "49,000",
+    },
+  },
 };
 
 export default API;

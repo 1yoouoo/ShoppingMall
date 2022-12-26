@@ -632,5 +632,12 @@
       width: 100%;
       min-width: 300px;
     }
+    &--title {
+      margin-top: 10px;
+    }
+    &--price {
+      margin-top: 10px;
+      margin-bottom: 30px;
+    }
   }
 }
