@@ -5,6 +5,7 @@ import App from "./App";
 import SignInPage from "./Containers/SignInPage";
 import SignUpPage from "./Containers/SignUpPage";
 import HomePage from "./Containers/HomePage";
+import ShopingPage from "./Containers/ShoppingPage";
 
 const Routing = () => {
   return (
@@ -13,6 +14,7 @@ const Routing = () => {
       <Route exact path="/homepage" element={<HomePage />} />
       <Route exact path="/signin" element={<SignInPage />} />
       <Route exact path="/signup" element={<SignUpPage />} />
+      <Route exact path="/shop" element={<ShopingPage />} />
     </Routes>
   );
 };
