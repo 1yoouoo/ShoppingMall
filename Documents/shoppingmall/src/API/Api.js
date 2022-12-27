@@ -7,14 +7,6 @@ const API_base = "http://api.mullae.com";
 
 const API = {
   signup: async (login_id, password, name, phone_number, email) => {
-    console.log(
-      "hihi signup call!",
-      login_id,
-      password,
-      name,
-      phone_number,
-      email
-    );
     const data = await axios.post(`${API_base}/signup`, {
       login_id: login_id,
       password: password,
@@ -35,6 +27,22 @@ const API = {
       {
         login_id: login_id,
         password: password,
+      },
+      { withCredentials: true }
+    );
+    if (data.status === 200) {
+      return data;
+    } else {
+      console.log("error", data.status);
+    }
+  },
+  registration: async (name, price, kind) => {
+    const data = await axios.post(
+      `${API_base}/item`,
+      {
+        name: name,
+        price: price,
+        kind: kind,
       },
       { withCredentials: true }
     );

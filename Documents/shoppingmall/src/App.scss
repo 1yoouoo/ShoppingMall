@@ -671,11 +671,7 @@
       margin: 3%;
       margin-left: 0;
       min-width: 300px;
-      span:nth-child(2) {
-        input {
-          height: 400px;
-        }
-      }
+
       span {
         margin: 5%;
         width: 90%;
@@ -686,14 +682,6 @@
           outline: none;
           width: 98%;
           height: 20px;
-        }
-        &:nth-child(2) {
-          height: 400px;
-          textarea {
-            outline: none;
-            height: 100%;
-            width: 98%;
-          }
         }
       }
     }

@@ -1,4 +1,5 @@
 import { useMemo, useState } from "react";
+import API from "../API/Api";
 
 const ProductRegistrationPage = () => {
   const [fileImage, setFileImage] = useState("");
@@ -16,10 +17,10 @@ const ProductRegistrationPage = () => {
     );
   }, [fileImage]);
   const [inputValue, setInputValue] = useState({
-    title: "",
-    detail: "",
+    name: "",
     price: "",
-    stock: "",
+    stock: 0,
+    kind: "TOP",
   });
   const onChange = (e) => {
     setInputValue({
@@ -28,7 +29,16 @@ const ProductRegistrationPage = () => {
     });
   };
   const onSubmit = () => {
-    console.log(inputValue);
+    API.registration(inputValue.name, inputValue.price, inputValue.kind).then(
+      (data) => {
+        console.log(data);
+        if (data.data.error === null) {
+          alert(data.data.validate?.message);
+        } else {
+          alert(data.data.error?.message);
+        }
+      }
+    );
   };
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
@@ -46,19 +56,21 @@ const ProductRegistrationPage = () => {
         <div className="product-registration__form--right">
           <span>
             <div>제목 : </div>
-            <input name="title" onChange={onChange} />
-          </span>
-          <span>
-            <div>설명 : </div>
-            <textarea name="detail" onChange={onChange} />
+            <input name="name" onChange={onChange} />
           </span>
           <span>
             <div>가격 : </div>
             <input name="price" onChange={onChange} />
           </span>
           <span>
-            <div>재고 : </div>
-            <input name="stock" onChange={onChange} />
+            <select onChange={onChange} name="kind" value={inputValue.kind}>
+              <option key="TOP" value="TOP">
+                TOP
+              </option>
+              <option key="BOTTOM" value="BOTTOM">
+                BOTTOM
+              </option>
+            </select>
           </span>
         </div>
       </div>
