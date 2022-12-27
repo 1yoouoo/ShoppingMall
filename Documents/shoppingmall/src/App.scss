@@ -641,9 +641,14 @@
     }
   }
   &__item {
+    cursor: pointer;
     display: flex;
     flex-direction: column;
     break-inside: avoid-column;
+    &:hover > img {
+      transition: all 0.5s;
+      filter: opacity(70%);
+    }
     img {
       width: 100%;
       min-width: 300px;
