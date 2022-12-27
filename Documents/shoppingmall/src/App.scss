@@ -709,3 +709,55 @@
     }
   }
 }
+
+.shopping-item-detail {
+  text-align: center;
+  &__form {
+    text-align: left;
+    display: flex;
+    margin: 5%;
+    height: 100vh;
+    min-width: 600px;
+    &--sample img {
+      width: 80%;
+    }
+    &--left {
+      width: 50%;
+      min-width: 40%;
+      margin: 3%;
+      span {
+        img {
+          width: 100%;
+        }
+      }
+    }
+    &--right {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin: 3%;
+      margin-left: 0;
+      min-width: 300px;
+      span {
+        margin: 5%;
+        width: 90%;
+        div {
+          font-size: 15px;
+        }
+        input {
+          outline: none;
+          width: 98%;
+          height: 20px;
+        }
+      }
+    }
+  }
+  &__right {
+    &--text {
+      font-size: 12px;
+      strong {
+        color: red;
+      }
+    }
+  }
+}

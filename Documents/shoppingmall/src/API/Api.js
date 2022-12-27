@@ -58,7 +58,15 @@ const API = {
         page: page,
       },
     });
-    return data;
+    return data.data.data;
+  },
+  getitem: async (item_id) => {
+    const data = await axios.get(`${API_base}/item/${item_id}`, {
+      params: {
+        item_id: item_id,
+      },
+    });
+    return data.data.data;
   },
 };
 
