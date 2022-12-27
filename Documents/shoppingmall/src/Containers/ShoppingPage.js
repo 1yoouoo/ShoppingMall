@@ -1,7 +1,10 @@
+import { useParams } from "react-router-dom";
 import StyledCategory from "../Components/StyledCategory";
 import ShoppingList from "./ShoppingList";
 
 const ShopingPage = () => {
+  // hook
+  const { itemId } = useParams();
   // state
   const categoryList = ["new 5%", "best", "outer", "top", "bottom", "acc"];
 

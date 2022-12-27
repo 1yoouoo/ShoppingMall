@@ -1,25 +1,27 @@
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import API from "../API/Api";
+
 const ShoppingList = () => {
+  // first Rendering
+  const page = 0;
+  const [itemList, setItemList] = useState([]);
+  useEffect(() => {
+    API.getitems(page).then((data) => {
+      console.log(data.data.data.itemListResponses);
+      data.data.data.itemListResponses &&
+        setItemList(data.data.data.itemListResponses);
+      console.log(itemList[0]?.name);
+    });
+  }, []);
+  // hook
+  const { itemId } = useParams();
+  const navigate = useNavigate();
   const sortList = ["LOW PRICE", "HIGH PRICE", "NEW", "HIT"];
-  const dummyList = [
-    {
-      id: 1,
-      img_src: require("../Assets/shopping-list-sample-1.jpeg"),
-      title: "제목1 테스트 입니다",
-      price: "39,000",
-    },
-    {
-      id: 2,
-      img_src: require("../Assets/shopping-list-sample-2.jpeg"),
-      title: "제목2 테스트 입니다",
-      price: "49,000",
-    },
-    {
-      id: 3,
-      img_src: require("../Assets/shopping-list-sample-2.jpeg"),
-      title: "제목3 테스트 입니다",
-      price: "59,000",
-    },
-  ];
+  const onClickTest = () => {
+    console.log(itemId);
+    navigate(`/shop/${itemId}`);
+  };
   return (
     <div className="shopping-list">
       <div className="shopping-list__form">
@@ -38,11 +40,18 @@ const ShoppingList = () => {
           </span>
         </div>
         <div className="shopping-list__form--bottom">
-          {dummyList.map((item) => {
+          {itemList.map((item) => {
             return (
-              <div className="shopping-list__item" key={item.id}>
-                <img src={item.img_src} alt="item1" />
-                <span className="shopping-list__item--title">{item.title}</span>
+              <div
+                className="shopping-list__item"
+                key={item.item_id}
+                onClick={onClickTest}
+              >
+                <img
+                  src={require("../Assets/shopping-list-sample-1.jpeg")}
+                  alt="item1"
+                />
+                <span className="shopping-list__item--title">{item.name}</span>
                 <b className="shopping-list__item--price">{item.price}</b>
               </div>
             );

@@ -52,6 +52,14 @@ const API = {
       console.log("error", data.status);
     }
   },
+  getitems: async (page) => {
+    const data = await axios.get(`${API_base}/items`, {
+      params: {
+        page: page,
+      },
+    });
+    return data;
+  },
 };
 
 export default API;
