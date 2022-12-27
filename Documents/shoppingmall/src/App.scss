@@ -709,54 +709,37 @@
     }
   }
 }
-
 .shopping-item-detail {
-  text-align: center;
   &__form {
-    text-align: left;
-    display: flex;
-    margin: 5%;
-    height: 100vh;
-    min-width: 600px;
-    &--sample img {
-      width: 80%;
-    }
-    &--left {
-      width: 50%;
-      min-width: 40%;
-      margin: 3%;
-      span {
-        img {
-          width: 100%;
-        }
+    column-count: 2;
+    padding-top: 5%;
+    &--img {
+      width: 100%;
+      img {
+        width: 100%;
       }
     }
-    &--right {
-      display: flex;
-      flex-direction: column;
-      width: 50%;
-      margin: 3%;
-      margin-left: 0;
-      min-width: 300px;
-      span {
-        margin: 5%;
-        width: 90%;
-        div {
-          font-size: 15px;
-        }
-        input {
-          outline: none;
-          width: 98%;
-          height: 20px;
-        }
+    &--text {
+      strong {
+        break-before: column;
+        color: red;
       }
     }
   }
-  &__right {
-    &--text {
-      font-size: 12px;
-      strong {
-        color: red;
+  &__text {
+    &--title {
+      display: flex;
+      flex-direction: column;
+      span {
+        margin-bottom: 10px;
+        &:nth-child(1) {
+          font-size: 16px;
+          font-weight: 700;
+        }
+        &:nth-child(2) {
+          font-size: 13px;
+          font-weight: 700;
+        }
       }
     }
   }
