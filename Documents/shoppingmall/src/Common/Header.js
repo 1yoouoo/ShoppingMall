@@ -60,21 +60,21 @@ const Header = () => {
             <ul className="header-form__menubar--list">
               <li className="navigator-item__mobile--wrapper">
                 <NavigatorItem
-                  title="SHOP"
+                  title="shop"
                   items={shopList}
                   className="navigator-item__mobile"
                 />
               </li>
               <li className="navigator-item__mobile--wrapper">
                 <NavigatorItem
-                  title="COMMUNITY"
+                  title="community"
                   items={communityList}
                   className="navigator-item__mobile"
                 />
               </li>
               <li className="navigator-item__mobile--wrapper">
                 <NavigatorItem
-                  title="MY PAGE"
+                  title="my page"
                   items={myPageList}
                   className="navigator-item__mobile"
                 />
@@ -85,17 +85,17 @@ const Header = () => {
           )}
 
           <NavigatorItem
-            title="SHOP"
+            title="shop"
             items={shopList}
             className="navigator-item"
           />
           <NavigatorItem
-            title="COMMUNITY"
+            title="community"
             items={communityList}
             className="navigator-item"
           />
           <NavigatorItem
-            title="MY PAGE"
+            title="my page"
             items={myPageList}
             className="navigator-item"
           />

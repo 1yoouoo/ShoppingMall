@@ -1,5 +1,5 @@
 const ShoppingList = () => {
-  const sortList = ["LOW PRICE", "HIGH PRICE", "NAME", "NEW", "HIT"];
+  const sortList = ["LOW PRICE", "HIGH PRICE", "NEW", "HIT"];
   const dummyList = [
     {
       id: 1,
@@ -27,10 +27,10 @@ const ShoppingList = () => {
           <span className="shopping-list__top--total">
             TOTAL <b>954</b> ITEMS
           </span>
-          <span>
+          <span className="shopping-list__top--sort">
             {sortList.map((sort) => {
               return (
-                <span className="shopping-list__top--sort" key={sort}>
+                <span className="shopping-list__sort--item" key={sort}>
                   {sort}
                 </span>
               );
