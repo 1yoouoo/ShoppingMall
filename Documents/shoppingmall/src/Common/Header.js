@@ -9,7 +9,6 @@ const Header = () => {
   //state
   const [menuToggle, setMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
-  const navigate = useNavigate();
   const shopList = [
     "ALL PADDING 5%",
     "ALL",
@@ -37,9 +36,10 @@ const Header = () => {
       {searchToggle ? (
         <>
           <MobileActivateSearch onClick={onClickSearchToggle} />
-          <div className="activate-search__empty" onClick={onClickSearchToggle}>
-            empty
-          </div>
+          <div
+            className="activate-search__empty"
+            onClick={onClickSearchToggle}
+          ></div>
         </>
       ) : (
         <></>
