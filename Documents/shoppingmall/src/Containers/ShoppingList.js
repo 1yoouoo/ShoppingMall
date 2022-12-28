@@ -25,7 +25,6 @@ const ShoppingList = ({ itemsData, sortList, sortingData, sort }) => {
           </span>
         </div>
         <div className="shopping-list__form--bottom">
-          {console.log(sortingData)}
           {sort
             ? sortingData &&
               sortingData.map((item) => {

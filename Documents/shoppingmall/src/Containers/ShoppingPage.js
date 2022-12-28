@@ -22,12 +22,13 @@ const ShopingPage = () => {
   //function
   const onClickCategory = (e) => {
     let kind = e.target.innerHTML;
-    console.log(kind);
-    console.log(itemsData);
-    setSortingData(
-      itemsData.itemListResponses.filter((item) => item.kind === kind)
-    );
-    console.log(sortingData);
+    if (kind === "ALL") {
+      setSortingData(itemsData.itemListResponses);
+    } else {
+      setSortingData(
+        itemsData.itemListResponses.filter((item) => item.kind === kind)
+      );
+    }
     setSort(true);
   };
 

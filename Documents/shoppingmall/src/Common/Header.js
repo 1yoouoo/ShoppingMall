@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderRight from "../Components/HeaderRight";
 import MainLogo from "../Components/MainLogo";
@@ -6,6 +6,17 @@ import MobileActivateSearch from "../Components/MobileActivateSearch";
 import NavigatorItem from "../Components/NavigatorItem";
 
 const Header = () => {
+  useEffect(() => {
+    if (localStorage.getItem("token") !== "" || null || undefined) {
+      console.log("로그인 됨");
+      setIsLogin(true);
+    } else {
+      setIsLogin(false);
+    }
+  });
+  //hook
+  const navigate = useNavigate();
+  const [isLogin, setIsLogin] = useState(false);
   //state
   const [menuToggle, setMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
@@ -63,6 +74,7 @@ const Header = () => {
                   title="shop"
                   items={shopList}
                   className="navigator-item__mobile"
+                  onClick={() => navigate("/shop")}
                 />
               </li>
               <li className="navigator-item__mobile--wrapper">
@@ -101,10 +113,13 @@ const Header = () => {
           />
         </ul>
         <div className="header-form__right--mobile">
-          <HeaderRight onClickSearchToggle={onClickSearchToggle} />
+          <HeaderRight
+            isLogin={isLogin}
+            onClickSearchToggle={onClickSearchToggle}
+          />
         </div>
         <div className="header-form__right--desktop">
-          <HeaderRight />
+          <HeaderRight isLogin={isLogin} />
         </div>
       </div>
     </header>

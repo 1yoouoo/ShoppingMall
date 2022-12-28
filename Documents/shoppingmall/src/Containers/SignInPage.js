@@ -28,8 +28,16 @@ const SignInPage = () => {
   // API CALL
   const handleSubmit = () => {
     API.signin(inputValue.login_id, inputValue.password).then((data) => {
-      let token = data.headers.token;
-      console.log(token);
+      if (data.data.vaildate !== null) {
+        let token = data.headers.token;
+        console.log(data);
+        console.log(token);
+        localStorage.setItem("token", token);
+        alert("로그인 성공");
+        navigate("/homepage");
+      } else {
+        alert("로그인 실패");
+      }
     });
   };
 
