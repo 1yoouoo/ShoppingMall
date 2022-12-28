@@ -28,7 +28,8 @@ const SignInPage = () => {
   // API CALL
   const handleSubmit = () => {
     API.signin(inputValue.login_id, inputValue.password).then((data) => {
-      if (data.data.vaildate !== null) {
+      if (data.data.validate !== null || undefined) {
+        console.log(data.data.validate);
         let token = data.headers.token;
         console.log(data);
         console.log(token);
