@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const StyledSpan = styled.span`
@@ -12,15 +11,8 @@ const StyledSpan = styled.span`
   }
 `;
 
-const StyledCategory = ({ title }) => {
-  const navigate = useNavigate();
-
-  const onClick = () => {
-    navigate(`/shop/${title}`);
-    console.log("hi");
-  };
-
-  return <StyledSpan onClick={onClick}>{title}</StyledSpan>;
+const StyledCategory = ({ title, onClickCategory }) => {
+  return <StyledSpan onClick={onClickCategory}>{title}</StyledSpan>;
 };
 
 export default StyledCategory;
