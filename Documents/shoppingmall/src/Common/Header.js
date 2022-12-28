@@ -3,20 +3,22 @@ import { useNavigate } from "react-router-dom";
 import HeaderRight from "../Components/HeaderRight";
 import MainLogo from "../Components/MainLogo";
 import MobileActivateSearch from "../Components/MobileActivateSearch";
+import API from "../API/Api";
 import NavigatorItem from "../Components/NavigatorItem";
 
 const Header = () => {
+  const [isLogin, setIsLogin] = useState(false);
   useEffect(() => {
-    if (localStorage.getItem("token") !== "" || null || undefined) {
+    if (localStorage.getItem("token") !== null) {
       console.log("로그인 됨");
       setIsLogin(true);
     } else {
+      console.log("로그인 안됨");
       setIsLogin(false);
     }
   });
   //hook
   const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(false);
   //state
   const [menuToggle, setMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
@@ -35,6 +37,7 @@ const Header = () => {
   const myPageList = ["주문조회", "관심상품", "적립금", "배송조회"];
 
   //function
+
   const onClickMenuToggle = () => {
     setMenuToggle(!menuToggle);
   };

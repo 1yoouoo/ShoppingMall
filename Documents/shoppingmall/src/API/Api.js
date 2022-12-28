@@ -68,6 +68,10 @@ const API = {
     });
     return data.data.data;
   },
+  logout: async (token) => {
+    const data = await axios.post(`${API_base}/logout`, { accessToken: token });
+    return data;
+  },
 };
 
 export default API;
