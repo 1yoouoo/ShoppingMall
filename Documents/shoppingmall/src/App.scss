@@ -768,3 +768,17 @@
     }
   }
 }
+.my-page {
+  margin: 10%;
+  height: 400px;
+  &__form {
+    display: flex;
+    flex-direction: column;
+    margin: 5%;
+    padding-top: 5%;
+    span {
+      font-size: 20px;
+      margin-top: 10px;
+    }
+  }
+}
