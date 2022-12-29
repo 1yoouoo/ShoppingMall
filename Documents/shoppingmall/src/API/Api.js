@@ -76,6 +76,15 @@ const API = {
     const data = await axios.get(`${API_base}/user/${token}`);
     return data;
   },
+  changeuser: async (token, password, phone_number, email) => {
+    const data = await axios.put(`${API_base}/user/`, {
+      accessToken: token,
+      password: password,
+      phone_number: phone_number,
+      email: email,
+    });
+    return data;
+  },
 };
 
 export default API;

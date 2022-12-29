@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import API from "../API/Api";
 
 const MyPage = () => {
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    const token = localStorage.getItem("token");
     API.getuser(token).then((data) => {
       console.log(data);
       setUserData({
@@ -28,7 +28,22 @@ const MyPage = () => {
     setChangeUserData(!changeUserData);
   };
   const onClickSave = () => {
-    setChangeUserData(!changeUserData);
+    API.changeuser(
+      token,
+      userData.password,
+      userData.phone_number,
+      userData.email
+    ).then((data) => {
+      console.log(data);
+      if (data.data.validate === null) {
+        //error
+        alert(data.data.error.message);
+      } else {
+        // success
+        alert(data.data.validate.message);
+        setChangeUserData(!changeUserData);
+      }
+    });
     console.log(userData);
   };
   const onChange = (e) => {
