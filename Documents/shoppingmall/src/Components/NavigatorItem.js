@@ -7,7 +7,7 @@ const NavigatorItem = ({ title, items, className }) => {
       <span
         className="navigator-item__title"
         onClick={() => {
-          navigate(`/${title}`);
+          navigate(`/${title.replace(/(\s*)/g, "")}`); // 공백 제거
         }}
       >
         {title}
