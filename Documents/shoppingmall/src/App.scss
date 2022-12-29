@@ -682,6 +682,52 @@
     }
   }
 }
+//page
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  span svg {
+    margin: 5px;
+    transform: translateY(1px);
+    cursor: pointer;
+  }
+  &__first-page {
+    svg {
+      width: 20px;
+    }
+    &-useless {
+      background-color: red;
+    }
+  }
+  &__previous-page {
+    svg {
+      width: 12.5px;
+    }
+  }
+  &__page-number {
+    cursor: pointer;
+    font-size: 15px;
+    display: flex;
+    padding: 0;
+    margin: 5px;
+    li {
+      margin: 0 5px;
+      padding: 3px 6px;
+      line-height: 20px;
+    }
+  }
+  &__next-page {
+    svg {
+      width: 12.5px;
+    }
+  }
+  &__last-page {
+    svg {
+      width: 20px;
+    }
+  }
+}
 
 //product re
 .product-registration {
@@ -695,7 +741,7 @@
     text-align: left;
     display: flex;
     margin: 5%;
-    height: 100vh;
+    height: 70vh;
     min-width: 600px;
     &--sample img {
       width: 80%;

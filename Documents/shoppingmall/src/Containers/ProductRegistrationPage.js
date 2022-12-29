@@ -21,6 +21,7 @@ const ProductRegistrationPage = () => {
     price: "",
     stock: 0,
     kind: "TOP",
+    color: "BLACK",
   });
   const onChange = (e) => {
     setInputValue({
@@ -29,16 +30,20 @@ const ProductRegistrationPage = () => {
     });
   };
   const onSubmit = () => {
-    API.registration(inputValue.name, inputValue.price, inputValue.kind).then(
-      (data) => {
-        console.log(data);
-        if (data.data.error === null) {
-          alert(data.data.validate?.message);
-        } else {
-          alert(data.data.error?.message);
-        }
+    API.registration(
+      inputValue.name,
+      inputValue.price,
+      inputValue.kind,
+      inputValue.color
+    ).then((data) => {
+      console.log(data);
+      console.log(inputValue);
+      if (data.data.error === null) {
+        alert(data.data.validate?.message);
+      } else {
+        alert(data.data.error?.message);
       }
-    );
+    });
   };
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
@@ -69,6 +74,22 @@ const ProductRegistrationPage = () => {
               </option>
               <option key="BOTTOM" value="BOTTOM">
                 BOTTOM
+              </option>
+            </select>
+          </span>
+          <span>
+            <select onChange={onChange} name="color" value={inputValue.color}>
+              <option key="BLACK" value="BLACK">
+                BLACK
+              </option>
+              <option key="WHITE" value="WHITE">
+                WHITE
+              </option>
+              <option key="RED" value="RED">
+                RED
+              </option>
+              <option key="BLUE" value="BLUE">
+                BLUE
               </option>
             </select>
           </span>

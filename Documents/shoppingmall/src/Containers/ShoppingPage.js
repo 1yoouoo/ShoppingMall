@@ -1,25 +1,31 @@
 import { useEffect, useState } from "react";
 import API from "../API/Api";
+import PageNation from "../Components/PageNation";
 import StyledCategory from "../Components/StyledCategory";
 import ShoppingList from "./ShoppingList";
 
 const ShopingPage = () => {
   // state
   const categoryList = [{ name: "ALL" }, { name: "TOP" }, { name: "BOTTOM" }];
-  const page = 0;
+  const [currentPage, setCurrentPage] = useState(1);
   const [itemsData, setItemsData] = useState([]);
   const [sortingData, setSortingData] = useState([]);
   const [sort, setSort] = useState(false);
   useEffect(() => {
-    API.getitems(page).then((data) => {
+    API.getitems(currentPage - 1).then((data) => {
       console.log(data);
       data && setItemsData(data);
     });
-  }, []);
+  }, [currentPage]);
   // hook
   const sortList = ["LOW PRICE", "HIGH PRICE", "NEW", "HIT"];
 
   //function
+  const onClickPageNumber = (e) => {
+    let pageNuberClick = e.target.innerHTML;
+    setCurrentPage(pageNuberClick);
+    console.log(currentPage);
+  };
   const onClickCategory = (e) => {
     let kind = e.target.innerHTML;
     if (kind === "ALL") {
@@ -49,12 +55,16 @@ const ShopingPage = () => {
           })}
         </div>
       </div>
-
       <ShoppingList
         itemsData={itemsData}
         sortList={sortList}
         sort={sort}
         sortingData={sortingData}
+      />
+      <PageNation
+        currentPage={currentPage}
+        totalPages={itemsData.totalPages}
+        onClickPageNumber={onClickPageNumber}
       />
     </>
   );
