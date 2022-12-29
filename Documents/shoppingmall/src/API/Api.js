@@ -73,10 +73,7 @@ const API = {
     return data;
   },
   getuser: async (token) => {
-    const data = await axios.get(`${API_base}/user`, {
-      // json 형식으로 보낼 때 다른 방식으로 넘겨줘야 하나 ??
-      accessToken: token,
-    });
+    const data = await axios.get(`${API_base}/user/${token}`);
     return data;
   },
 };

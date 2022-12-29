@@ -3,8 +3,7 @@ import API from "../API/Api";
 
 const MyPage = () => {
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    const token = "31323334353637383930303538";
+    const token = localStorage.getItem("token");
     API.getuser(token).then((data) => {
       console.log(data);
     });
