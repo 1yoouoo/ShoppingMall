@@ -36,13 +36,12 @@ const API = {
       console.log("error", data.status);
     }
   },
-  registration: async (name, price, kind, color) => {
+  registration: async (name, price, color) => {
     const data = await axios.post(
       `${API_base}/item`,
       {
         name: name,
         price: price,
-        kind: kind,
         color: color,
       },
       { withCredentials: true }

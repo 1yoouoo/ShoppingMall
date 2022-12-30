@@ -20,7 +20,6 @@ const ProductRegistrationPage = () => {
     name: "",
     price: "",
     stock: 0,
-    kind: "TOP",
     color: "BLACK",
   });
   const onChange = (e) => {
@@ -30,20 +29,17 @@ const ProductRegistrationPage = () => {
     });
   };
   const onSubmit = () => {
-    API.registration(
-      inputValue.name,
-      inputValue.price,
-      inputValue.kind,
-      inputValue.color
-    ).then((data) => {
-      console.log(data);
-      console.log(inputValue);
-      if (data.data.error === null) {
-        alert(data.data.validate?.message);
-      } else {
-        alert(data.data.error?.message);
+    API.registration(inputValue.name, inputValue.price, inputValue.color).then(
+      (data) => {
+        console.log(data);
+        console.log(inputValue);
+        if (data.data.error === null) {
+          alert(data.data.validate?.message);
+        } else {
+          alert(data.data.error?.message);
+        }
       }
-    });
+    );
   };
   const saveFileImage = (e) => {
     setFileImage(URL.createObjectURL(e.target.files[0]));
@@ -67,16 +63,7 @@ const ProductRegistrationPage = () => {
             <div>가격 : </div>
             <input name="price" onChange={onChange} />
           </span>
-          <span>
-            <select onChange={onChange} name="kind" value={inputValue.kind}>
-              <option key="TOP" value="TOP">
-                TOP
-              </option>
-              <option key="BOTTOM" value="BOTTOM">
-                BOTTOM
-              </option>
-            </select>
-          </span>
+
           <span>
             <select onChange={onChange} name="color" value={inputValue.color}>
               <option key="BLACK" value="BLACK">

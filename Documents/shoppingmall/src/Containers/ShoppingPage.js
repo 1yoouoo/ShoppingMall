@@ -26,17 +26,17 @@ const ShopingPage = () => {
     setCurrentPage(pageNuberClick);
     console.log(currentPage);
   };
-  const onClickCategory = (e) => {
-    let kind = e.target.innerHTML;
-    if (kind === "ALL") {
-      setSortingData(itemsData.itemListResponses);
-    } else {
-      setSortingData(
-        itemsData.itemListResponses.filter((item) => item.kind === kind)
-      );
-    }
-    setSort(true);
-  };
+  // const onClickCategory = (e) => {
+  //   let kind = e.target.innerHTML;
+  //   if (kind === "ALL") {
+  //     setSortingData(itemsData.itemListResponses);
+  //   } else {
+  //     setSortingData(
+  //       itemsData.itemListResponses.filter((item) => item.kind === kind)
+  //     );
+  //   }
+  //   setSort(true);
+  // };
 
   // sortData만
   return (
@@ -48,7 +48,7 @@ const ShopingPage = () => {
               <StyledCategory
                 title={category.name}
                 key={category.name}
-                onClickCategory={onClickCategory}
+                // onClickCategory={onClickCategory}
                 sort={sort}
               />
             );
