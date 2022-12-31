@@ -9,6 +9,7 @@ import ShopingPage from "./Containers/ShoppingPage";
 import ProductRegistrationPage from "./Containers/ProductRegistrationPage";
 import ShoppingItemDetail from "./Containers/ShoppingItemDetail";
 import MyPage from "./Containers/MyPage";
+import ShoppingBasketPage from "./Containers/ShoppingBasketPage";
 
 const Routing = () => {
   return (
@@ -19,6 +20,11 @@ const Routing = () => {
       <Route exact path="/signup" element={<SignUpPage />} />
       <Route exact path="/mypage" element={<MyPage />} />
       <Route exact path="/shop" element={<ShopingPage />} />
+      <Route
+        exact
+        path="/shoppingbasketpage"
+        element={<ShoppingBasketPage />}
+      />
       <Route exact path="/shop/:item_id" element={<ShoppingItemDetail />} />
       <Route
         exact

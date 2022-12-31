@@ -828,3 +828,34 @@
     }
   }
 }
+.shopping-basket {
+  margin: 5%;
+  border: 1px solid #000;
+  width: 90%;
+  &__form {
+    &--title {
+      font-size: 15px;
+    }
+    &--table {
+      margin: 2% 0;
+      width: 100%;
+      border: 1px solid #000;
+      thead {
+        background-color: red;
+      }
+      tbody {
+        background-color: blue;
+      }
+      tfoot {
+        background-color: green;
+      }
+    }
+    &--delete {
+      display: flex;
+      justify-content: space-between;
+    }
+    &--order {
+      text-align: center;
+    }
+  }
+}

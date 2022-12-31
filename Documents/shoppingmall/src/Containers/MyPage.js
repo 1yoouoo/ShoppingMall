@@ -5,7 +5,6 @@ const MyPage = () => {
   const token = localStorage.getItem("token");
   useEffect(() => {
     API.getuser(token).then((data) => {
-      console.log(data);
       setUserData({
         ...userData,
         login_id: data.data.data.login_id,
@@ -34,7 +33,6 @@ const MyPage = () => {
       userData.phone_number,
       userData.email
     ).then((data) => {
-      console.log(data);
       if (data.data.validate === null) {
         //error
         alert(data.data.error.message);
@@ -44,7 +42,6 @@ const MyPage = () => {
         setChangeUserData(!changeUserData);
       }
     });
-    console.log(userData);
   };
   const onChange = (e) => {
     setUserData({

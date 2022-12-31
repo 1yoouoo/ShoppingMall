@@ -13,7 +13,6 @@ const ShopingPage = () => {
   const [sort, setSort] = useState(false);
   useEffect(() => {
     API.getitems(currentPage - 1).then((data) => {
-      console.log(data);
       data && setItemsData(data);
     });
   }, [currentPage]);
@@ -24,7 +23,6 @@ const ShopingPage = () => {
   const onClickPageNumber = (e) => {
     let pageNuberClick = e.target.innerHTML;
     setCurrentPage(pageNuberClick);
-    console.log(currentPage);
   };
   // const onClickCategory = (e) => {
   //   let kind = e.target.innerHTML;

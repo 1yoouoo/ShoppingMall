@@ -42,7 +42,6 @@ const Header = () => {
     setMenuToggle(!menuToggle);
   };
   const onClickSearchToggle = () => {
-    console.log("clcikc");
     setSearchToggle(!searchToggle);
   };
   return (

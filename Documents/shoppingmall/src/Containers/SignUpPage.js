@@ -14,13 +14,9 @@ const SignUpPage = () => {
   });
   const onChangeValue = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
-    console.log(inputValue);
   };
 
   //function
-  const onClickPN = () => {
-    console.log(inputValue);
-  };
 
   // API CALL
   const handleSubmit = () => {
@@ -31,7 +27,6 @@ const SignUpPage = () => {
       inputValue.phone_number,
       inputValue.email
     ).then((data) => {
-      console.log(data.data);
       if (data.data.validate === null) {
         alert(data.data.error?.message);
       } else {
@@ -94,7 +89,7 @@ const SignUpPage = () => {
                   onChange={onChangeValue}
                   value={inputValue.phone_number}
                 />
-                <button onClick={onClickPN}>인증번호받기</button>
+                <button>인증번호받기</button>
                 <span> - 빼고 입력 해 주세요</span>
               </td>
             </tr>

@@ -4,7 +4,6 @@ const ShoppingList = ({ itemsData, sortList, sortingData, sort }) => {
   const navigate = useNavigate();
 
   const onClickTest = (item_id) => {
-    console.log(item_id);
     navigate(`/shop/${item_id}`);
   };
   return (

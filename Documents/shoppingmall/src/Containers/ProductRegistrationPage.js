@@ -31,8 +31,6 @@ const ProductRegistrationPage = () => {
   const onSubmit = () => {
     API.registration(inputValue.name, inputValue.price, inputValue.color).then(
       (data) => {
-        console.log(data);
-        console.log(inputValue);
         if (data.data.error === null) {
           alert(data.data.validate?.message);
         } else {

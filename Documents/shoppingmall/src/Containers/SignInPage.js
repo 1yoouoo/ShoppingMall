@@ -19,7 +19,6 @@ const SignInPage = () => {
       ...inputValue,
       [e.target.name]: e.target.value,
     });
-    console.log(idInput);
   };
   const onClickJoinMember = () => {
     navigate("/signup");
@@ -29,10 +28,7 @@ const SignInPage = () => {
   const handleSubmit = () => {
     API.signin(inputValue.login_id, inputValue.password).then((data) => {
       if (data.data.validate !== null || undefined) {
-        console.log(data.data.validate);
         let token = data.headers.token;
-        console.log(data);
-        console.log(token);
         localStorage.setItem("token", token);
         alert("로그인 성공");
         navigate("/homepage");
@@ -70,6 +66,7 @@ const SignInPage = () => {
             <StyledButton
               background="black"
               color="white"
+              border="none"
               onClick={handleSubmit}
               type="button"
             >
@@ -85,6 +82,7 @@ const SignInPage = () => {
               type="button"
               background="default"
               color="black"
+              border="none"
               onClick={onClickJoinMember}
             >
               JOIN MEMBER

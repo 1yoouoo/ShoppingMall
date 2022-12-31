@@ -7,7 +7,6 @@ const ShoppingItemDetail = () => {
   const [itemData, setItemData] = useState([]);
   useEffect(() => {
     API.getitem(item_id).then((data) => {
-      console.log(data);
       data && setItemData(data);
     });
   }, []);
