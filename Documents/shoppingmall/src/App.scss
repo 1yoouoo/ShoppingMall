@@ -929,4 +929,43 @@
       }
     }
   }
+  &__total {
+    margin: 5% 0;
+    border: 1px solid #999;
+
+    &--table {
+      border-collapse: collapse;
+      width: 100%;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 800;
+      thead {
+        height: 50px;
+        tr {
+          td {
+            &:nth-child(1) {
+              width: 20%;
+            }
+            &:nth-child(2) {
+              width: 20%;
+            }
+            &:nth-child(3) {
+              width: 60%;
+            }
+          }
+        }
+      }
+      tbody {
+        height: 70px;
+        border-top: 1px solid #999;
+        tr {
+          td {
+            &:nth-child(3) {
+              color: rgb(17, 17, 174);
+            }
+          }
+        }
+      }
+    }
+  }
 }
