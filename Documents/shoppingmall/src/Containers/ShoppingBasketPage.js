@@ -7,36 +7,43 @@ const ShoppingBasketPage = () => {
       id: 1,
       image: "../Assets/shopping-list-sample-1.jpeg",
       name: "이것은 테스트1 입니다.[color:red/size:M]",
-      price: "30,000",
-      count: "2",
+      price: 30000,
+      count: 2,
       deliveryFee: "무료 배송",
-      totalPrice: "60,000",
+      totalPrice: 60000,
     },
     {
       id: 2,
       image: "../Assets/shopping-list-sample-1.jpeg",
       name: "이것은 테스트2 입니다.",
-      price: "40,000",
-      count: "2",
+      price: 40000,
+      count: 2,
       deliveryFee: "무료 배송",
-      totalPrice: "80,000",
+      totalPrice: 80000,
     },
     {
       id: 3,
       image: "../Assets/shopping-list-sample-1.jpeg",
       name: "이것은 테스트3 입니다.",
-      price: "20,000",
-      count: "1",
+      price: 20000,
+      count: 1,
       deliveryFee: "무료 배송",
-      totalPrice: "20,000",
+      totalPrice: 20000,
     },
   ];
-
-  //hook
 
   //state
   const [checkedItemList, setCheckedItemList] = useState([]);
   const [checkedIdList, setCheckedIdList] = useState([]);
+  const [selectedItemsPrice, setSelectedItemsPrice] = useState(0);
+  //hook
+  useEffect(() => {
+    let eachItemPrice = 0;
+    checkedItemList.map((item) => (eachItemPrice += item.totalPrice));
+    setSelectedItemsPrice(eachItemPrice);
+    console.log(selectedItemsPrice);
+  }, [checkedItemList]);
+
   //function
   const handleCheckedAll = (checked) => {
     if (checked) {
@@ -69,8 +76,10 @@ const ShoppingBasketPage = () => {
     console.log("checkedIdList", checkedIdList);
   };
   const addTotalPrice = () => {
-    console.log("checkedIdList : ", checkedIdList);
-    console.log("checkedItemList : ", checkedItemList);
+    let eachItemPrice = 0;
+    checkedItemList.map((item) => (eachItemPrice += item.totalPrice));
+    setSelectedItemsPrice(eachItemPrice);
+    console.log(selectedItemsPrice);
   };
   return (
     <div className="shopping-basket">
@@ -158,7 +167,7 @@ const ShoppingBasketPage = () => {
               <td colSpan={2}>[기본 배송]</td>
               <td colSpan={6}>
                 상품구매금액 <b>231,000</b>원 + 배송비 0원 = 합계 :
-                <span id="totalPrice"> 231,000원</span>
+                <span id="totalPrice"> {selectedItemsPrice}원</span>
               </td>
             </tr>
           </tfoot>
