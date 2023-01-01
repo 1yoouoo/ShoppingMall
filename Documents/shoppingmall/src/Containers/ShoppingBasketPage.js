@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StyledSmallButton from "../Components/StyledSmallButton";
 
 const ShoppingBasketPage = () => {
@@ -36,30 +36,41 @@ const ShoppingBasketPage = () => {
 
   //state
   const [checkedItemList, setCheckedItemList] = useState([]);
+  const [checkedIdList, setCheckedIdList] = useState([]);
   //function
-  const handleCheckAll = (checked) => {
+  const handleCheckedAll = (checked) => {
     if (checked) {
       // 전체 선택 클릭 시 데이터의 모든 아이템(id)를 담은 배열로 checkItems 상태 업데이트
       const idArray = [];
+      const itemArray = [];
       dummyList.forEach((el) => idArray.push(el.id));
-      setCheckedItemList(idArray);
+      dummyList.forEach((el) => itemArray.push(el));
+      setCheckedIdList(idArray);
+      setCheckedItemList(itemArray);
     } else {
       // 전체 선택 해제 시 checkItems 를 빈 배열로 상태 업데이트
+      setCheckedIdList([]);
       setCheckedItemList([]);
     }
-    console.log(checkedItemList);
+    console.log(checkedIdList);
   };
-  const handleCheckItem = (checked, id) => {
+  const handleCheckedItem = (checked, id) => {
     if (checked) {
       // 단일 선택 시 체크된 아이템을 배열에 추가
-      setCheckedItemList((prev) => [...prev, id]);
-      console.log("checked");
+      setCheckedIdList((prev) => [...prev, id]);
+      let eachItem = dummyList.find((item) => item.id === id);
+      setCheckedItemList((prev) => [...prev, eachItem]);
+      console.log(checkedItemList);
     } else {
-      // 단일 선택 해제 시 체크된 아이템을 제외한 배열 (필터)
-      setCheckedItemList(checkedItemList.filter((el) => el !== id));
-      console.log("unchecked");
+      // 단일 선택 해제 시 체크된 아이템을 제외한 배열
+      setCheckedIdList(checkedIdList.filter((el) => el !== id)); // 선택 해제된 id 제거
+      setCheckedItemList(checkedItemList.filter((item) => item.id !== id)); // 선택 해제된 item 제거
     }
-    console.log(checkedItemList);
+    console.log("checkedIdList", checkedIdList);
+  };
+  const addTotalPrice = () => {
+    console.log("checkedIdList : ", checkedIdList);
+    console.log("checkedItemList : ", checkedItemList);
   };
   return (
     <div className="shopping-basket">
@@ -73,10 +84,10 @@ const ShoppingBasketPage = () => {
                   type="checkbox"
                   name="select-all"
                   onChange={(e) => {
-                    handleCheckAll(e.target.checked);
+                    handleCheckedAll(e.target.checked);
                   }}
                   checked={
-                    checkedItemList.length === dummyList.length ? true : false
+                    checkedIdList.length === dummyList.length ? true : false
                   }
                 />
               </th>
@@ -98,9 +109,9 @@ const ShoppingBasketPage = () => {
                       type="checkbox"
                       name={`select-${item.id}`}
                       onChange={(e) =>
-                        handleCheckItem(e.target.checked, item.id)
+                        handleCheckedItem(e.target.checked, item.id)
                       }
-                      checked={checkedItemList.includes(item.id) ? true : false}
+                      checked={checkedIdList.includes(item.id) ? true : false}
                     />
                   </td>
                   <td className="shopping-basket__tbody--img">
@@ -153,7 +164,12 @@ const ShoppingBasketPage = () => {
           </tfoot>
         </table>
         <div className="shopping-basket__form--delete">
-          <StyledSmallButton background="#e6e6e6" color="black" border="none">
+          <StyledSmallButton
+            background="#e6e6e6"
+            color="black"
+            border="none"
+            onClick={addTotalPrice}
+          >
             삭제하기
           </StyledSmallButton>
           <StyledSmallButton
