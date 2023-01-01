@@ -15,7 +15,11 @@ const NavigatorItem = ({ title, items, className }) => {
       <ul className="navigator-item__list">
         {items?.map((item) => {
           return (
-            <li className="navigator-item__item" key={item}>
+            <li
+              className="navigator-item__item"
+              key={item}
+              onClick={() => navigate("/productregistration")}
+            >
               {item}
             </li>
           );

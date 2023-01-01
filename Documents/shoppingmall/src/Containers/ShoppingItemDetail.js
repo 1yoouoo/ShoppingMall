@@ -5,11 +5,28 @@ import API from "../API/Api";
 const ShoppingItemDetail = () => {
   const { item_id } = useParams();
   const [itemData, setItemData] = useState([]);
+  const [test, setTest] = useState({
+    item_id: "1",
+    name: "",
+    price: "",
+    color: ["BLACK", "WHITE", "RED", "BLUE"],
+    count: "",
+  });
+
   useEffect(() => {
     API.getitem(item_id).then((data) => {
       data && setItemData(data);
+      console.log(data);
     });
   }, []);
+
+  const countLimit = (number) => {
+    const result = [];
+    for (let i = 1; i <= number; i++) {
+      result.push(<option key={i}>{i}</option>);
+    }
+    return result;
+  };
   return (
     <div className="shopping-item-detail">
       <div className="shopping-item-detail__form">
@@ -49,6 +66,20 @@ const ShoppingItemDetail = () => {
           <br></br>
           배송비 – 기본 3,000원 / 100,000원 이상 구매 시 무료 <br></br>
           제주도 및 도서산간 지역 6,000원 (무료배송 시 3,000원)
+        </div>
+        <div>
+          <b>색상 : </b>
+          <select name="color">
+            {test.color.map((color) => (
+              <option key={color} value={color}>
+                {color}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <b>수량 : </b>
+          <select name="count">{countLimit(20)}</select>
         </div>
       </div>
       <div className="shopping-item-detail__form--bottom"></div>

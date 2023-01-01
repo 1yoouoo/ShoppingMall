@@ -42,10 +42,10 @@ const ShoppingBasketPage = () => {
   //hook
   useEffect(() => {
     let eachItemPrice = 0;
-    checkedItemList.map((item) => (eachItemPrice += item.totalPrice));
+    checkedItemList?.map((item) => (eachItemPrice += item.totalPrice));
     setSelectedItemsPrice(eachItemPrice);
     console.log(selectedItemsPrice);
-    console.log(dummyList.length === 0);
+    console.log(dummyList?.length === 0);
   }, [checkedItemList]);
 
   //function
@@ -82,14 +82,31 @@ const ShoppingBasketPage = () => {
   const hanbleDeletedAll = () => {
     setDummyList([]);
   };
-  const hanbleDeletedItem = () => {};
+  const hanbleDeletedItem = (id) => {
+    setDummyList(dummyList.filter((item) => item.id !== id)); // 선택 해제된 item 제거
+    console.log(dummyList);
+  };
+  // 보류 ,,...
+  // const handleDeltedSelectedItems = () => {
+  //   checkedIdList.sort();
+  //   checkedIdList.forEach((id) => {
+  //     dummyList.map((item) => {
+  //       if (item.id === id) {
+  //         dummyList.splice(item, 1);
+  //         console.log(dummyList);
+  //       }
+  //     });
+  //   });
+  //   setDummyList(dummyList);
+  //   console.log(dummyList);
+  // };
   return (
     <>
-      {dummyList.length !== 0 ? (
+      {dummyList?.length !== 0 ? (
         <div className="shopping-basket">
           <div className="shopping-basket__form">
             <span className="shopping-basket__form--title">
-              상품 {dummyList.length}개
+              상품 {dummyList?.length}개
             </span>
             <table className="shopping-basket__form--table">
               <thead className="shopping-basket__thead">
@@ -102,7 +119,9 @@ const ShoppingBasketPage = () => {
                         handleCheckedAll(e.target.checked);
                       }}
                       checked={
-                        checkedIdList.length === dummyList.length ? true : false
+                        checkedIdList?.length === dummyList?.length
+                          ? true
+                          : false
                       }
                     />
                   </th>
@@ -118,7 +137,7 @@ const ShoppingBasketPage = () => {
                 </tr>
               </thead>
               <tbody className="shopping-basket__tbody">
-                {dummyList.map((item) => {
+                {dummyList?.map((item) => {
                   return (
                     <tr key={item.id}>
                       <td className="shopping-basket__tbody--checkBox">
@@ -166,6 +185,7 @@ const ShoppingBasketPage = () => {
                           background="#e6e6e6"
                           color="black"
                           border="none"
+                          onClick={() => hanbleDeletedItem(item.id)}
                         >
                           삭제하기
                         </StyledSmallButton>
@@ -241,6 +261,7 @@ const ShoppingBasketPage = () => {
                   background="white"
                   color="black"
                   border="1px solid #ccc"
+                  onClick={() => navigate(-1)}
                 >
                   쇼핑계속하기
                 </StyledSmallButton>

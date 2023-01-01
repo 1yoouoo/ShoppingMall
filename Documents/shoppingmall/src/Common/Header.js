@@ -34,7 +34,13 @@ const Header = () => {
     "ACC",
   ];
   const communityList = ["NOTICE", "Q&A", "REVIEW"];
-  const myPageList = ["주문조회", "관심상품", "적립금", "배송조회"];
+  const myPageList = [
+    "주문조회",
+    "관심상품",
+    "적립금",
+    "배송조회",
+    "상품 등록하기",
+  ];
 
   //function
 
