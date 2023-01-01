@@ -4,6 +4,7 @@ import API from "../API/Api";
 import StyledButton from "../Components/StyledButton";
 
 const ShoppingItemDetail = () => {
+  const token = localStorage.getItem("token");
   const { item_id } = useParams();
   const [itemData, setItemData] = useState({
     itemColorList: [],
@@ -39,7 +40,9 @@ const ShoppingItemDetail = () => {
       itemData.count !== undefined &&
       itemData.count !== "-"
     ) {
-      alert("장바구니 추가 완료");
+      API.putbasket(token, itemData.color, itemData.count).then((data) =>
+        alert(data?.data.validate.message)
+      );
     } else {
       alert("옵션을 선택해 주세요");
     }
@@ -54,6 +57,7 @@ const ShoppingItemDetail = () => {
       {!itemData && <p>Loading ...</p>}
       {itemData && (
         <div className="shopping-item-detail">
+          {console.log(itemData)}
           <div className="shopping-item-detail__form">
             <div className="shopping-item-detail__form--img">
               <img

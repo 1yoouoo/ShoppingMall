@@ -85,11 +85,19 @@ const API = {
   //   return data;
   // },
   changeuser: async (token, password, phone_number, email) => {
-    const data = await axios.put(`${API_base}/user/`, {
+    const data = await axios.put(`${API_base}/user`, {
       accessToken: token,
       password: password,
       phone_number: phone_number,
       email: email,
+    });
+    return data;
+  },
+  putbasket: async (token, color_id, count) => {
+    const data = await axios.post(`${API_base}/cart/${color_id}`, {
+      accessToken: token,
+      color_id: color_id,
+      count: count,
     });
     return data;
   },
