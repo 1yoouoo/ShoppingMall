@@ -1,52 +1,32 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import API from "../API/Api";
 import StyledButton from "../Components/StyledButton";
 import StyledSmallButton from "../Components/StyledSmallButton";
 
 const ShoppingBasketPage = () => {
-  const [dummyList, setDummyList] = useState([
-    {
-      id: 1,
-      image: "../Assets/shopping-list-sample-1.jpeg",
-      name: "이것은 테스트1 입니다.[color:red/size:M]",
-      price: 30000,
-      count: 2,
-      deliveryFee: "무료 배송",
-      totalPrice: 60000,
-    },
-    {
-      id: 2,
-      image: "../Assets/shopping-list-sample-1.jpeg",
-      name: "이것은 테스트2 입니다.",
-      price: 40000,
-      count: 2,
-      deliveryFee: "무료 배송",
-      totalPrice: 80000,
-    },
-    {
-      id: 3,
-      image: "../Assets/shopping-list-sample-1.jpeg",
-      name: "이것은 테스트3 입니다.",
-      price: 20000,
-      count: 1,
-      deliveryFee: "무료 배송",
-      totalPrice: 20000,
-    },
-  ]);
+  const token = localStorage.getItem("token");
 
   //state
   const navigate = useNavigate();
+  const [basketItemsList, setBasketItemsList] = useState([]);
   const [checkedItemList, setCheckedItemList] = useState([]);
   const [checkedIdList, setCheckedIdList] = useState([]);
   const [selectedItemsPrice, setSelectedItemsPrice] = useState(0);
   //hook
   useEffect(() => {
+    // 장바구니 체크박스 훅
     let eachItemPrice = 0;
-    checkedItemList?.map((item) => (eachItemPrice += item.totalPrice));
     setSelectedItemsPrice(eachItemPrice);
-    console.log(selectedItemsPrice);
-    console.log(dummyList?.length === 0);
   }, [checkedItemList]);
+
+  useEffect(() => {
+    // 첫 렌더링 시 장바구니 조회
+    API.getbasket(token).then((data) => {
+      setBasketItemsList(data.cartItemResponseList);
+      console.log(data.cartItemResponseList);
+    });
+  }, []);
 
   //function
   const handleCheckedAll = (checked) => {
@@ -54,8 +34,8 @@ const ShoppingBasketPage = () => {
       // 전체 선택 클릭 시 데이터의 모든 아이템(id)를 담은 배열로 checkItems 상태 업데이트
       const idArray = [];
       const itemArray = [];
-      dummyList.forEach((el) => idArray.push(el.id));
-      dummyList.forEach((el) => itemArray.push(el));
+      basketItemsList.forEach((el) => idArray.push(el.cart_item_id));
+      basketItemsList.forEach((el) => itemArray.push(el));
       setCheckedIdList(idArray);
       setCheckedItemList(itemArray);
     } else {
@@ -65,48 +45,54 @@ const ShoppingBasketPage = () => {
     }
     console.log(checkedIdList);
   };
-  const handleCheckedItem = (checked, id) => {
+  const handleCheckedItem = (checked, cart_item_id) => {
     if (checked) {
       // 단일 선택 시 체크된 아이템을 배열에 추가
-      setCheckedIdList((prev) => [...prev, id]);
-      let eachItem = dummyList.find((item) => item.id === id);
+      setCheckedIdList((prev) => [...prev, cart_item_id]);
+      let eachItem = basketItemsList.find(
+        (item) => item.cart_item_id === cart_item_id
+      );
       setCheckedItemList((prev) => [...prev, eachItem]);
       console.log(checkedItemList);
     } else {
       // 단일 선택 해제 시 체크된 아이템을 제외한 배열
-      setCheckedIdList(checkedIdList.filter((el) => el !== id)); // 선택 해제된 id 제거
-      setCheckedItemList(checkedItemList.filter((item) => item.id !== id)); // 선택 해제된 item 제거
+      setCheckedIdList(checkedIdList.filter((el) => el !== cart_item_id)); // 선택 해제된 id 제거
+      setCheckedItemList(
+        checkedItemList.filter((item) => item.cart_item_id !== cart_item_id)
+      ); // 선택 해제된 item 제거
     }
     console.log("checkedIdList", checkedIdList);
   };
   const hanbleDeletedAll = () => {
-    setDummyList([]);
+    setBasketItemsList([]);
   };
-  const hanbleDeletedItem = (id) => {
-    setDummyList(dummyList.filter((item) => item.id !== id)); // 선택 해제된 item 제거
-    console.log(dummyList);
+  const hanbleDeletedItem = (cart_item_id) => {
+    setBasketItemsList(
+      basketItemsList.filter((item) => item.cart_item_id !== cart_item_id)
+    ); // 선택 해제된 item 제거
+    console.log(basketItemsList);
   };
   // 보류 ,,...
   // const handleDeltedSelectedItems = () => {
   //   checkedIdList.sort();
   //   checkedIdList.forEach((id) => {
-  //     dummyList.map((item) => {
+  //     basketItemsList.map((item) => {
   //       if (item.id === id) {
-  //         dummyList.splice(item, 1);
-  //         console.log(dummyList);
+  //         basketItemsList.splice(item, 1);
+  //         console.log(basketItemsList);
   //       }
   //     });
   //   });
-  //   setDummyList(dummyList);
-  //   console.log(dummyList);
+  //   setBasketItemsList(basketItemsList);
+  //   console.log(basketItemsList);
   // };
   return (
     <>
-      {dummyList?.length !== 0 ? (
+      {basketItemsList?.length !== 0 ? (
         <div className="shopping-basket">
           <div className="shopping-basket__form">
             <span className="shopping-basket__form--title">
-              상품 {dummyList?.length}개
+              상품 {basketItemsList?.length}개
             </span>
             <table className="shopping-basket__form--table">
               <thead className="shopping-basket__thead">
@@ -119,7 +105,7 @@ const ShoppingBasketPage = () => {
                         handleCheckedAll(e.target.checked);
                       }}
                       checked={
-                        checkedIdList?.length === dummyList?.length
+                        checkedIdList?.length === basketItemsList?.length
                           ? true
                           : false
                       }
@@ -137,18 +123,23 @@ const ShoppingBasketPage = () => {
                 </tr>
               </thead>
               <tbody className="shopping-basket__tbody">
-                {dummyList?.map((item) => {
+                {basketItemsList?.map((item) => {
                   return (
-                    <tr key={item.id}>
+                    <tr key={item.cart_item_id}>
                       <td className="shopping-basket__tbody--checkBox">
                         <input
                           type="checkbox"
-                          name={`select-${item.id}`}
+                          name={`select-${item.cart_item_id}`}
                           onChange={(e) =>
-                            handleCheckedItem(e.target.checked, item.id)
+                            handleCheckedItem(
+                              e.target.checked,
+                              item.cart_item_id
+                            )
                           }
                           checked={
-                            checkedIdList.includes(item.id) ? true : false
+                            checkedIdList.includes(item.cart_item_id)
+                              ? true
+                              : false
                           }
                         />
                       </td>
@@ -159,7 +150,9 @@ const ShoppingBasketPage = () => {
                         />
                       </td>
                       <td className="shopping-basket__tbody--name">
-                        {item.name}
+                        <b>{item.name}</b>
+                        <br></br>
+                        [색상 : {item.color}]
                       </td>
                       <td className="shopping-basket__tbody--price">
                         {item.price}원
@@ -168,7 +161,7 @@ const ShoppingBasketPage = () => {
                         {item.count}
                       </td>
                       <td className="shopping-basket__tbody--deliveryFee">
-                        {item.deliveryFee}
+                        무료
                       </td>
                       <td className="shopping-basket__tbody--totalPrice">
                         {item.totalPrice}원

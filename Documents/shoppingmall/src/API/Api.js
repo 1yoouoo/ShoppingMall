@@ -1,9 +1,9 @@
 import axios from "axios";
 // AWS API
-const API_base = "http://api.mullae.com";
+// const API_base = "http://api.mullae.com";
 
 // LOCAL API
-// const API_base = "http://192.168.35.126:8080";
+const API_base = "http://192.168.35.126:80";
 
 const API = {
   signup: async (login_id, password, name, phone_number, email) => {
@@ -100,6 +100,10 @@ const API = {
       count: count,
     });
     return data;
+  },
+  getbasket: async (token) => {
+    const data = await axios.get(`${API_base}/cart/${token}`);
+    return data.data.data;
   },
 };
 
