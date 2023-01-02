@@ -14,19 +14,6 @@ const ShoppingBasketPage = () => {
   const [checkedIdList, setCheckedIdList] = useState([]);
   const [selectedItemsPrice, setSelectedItemsPrice] = useState(0);
   //hook
-  useEffect(() => {
-    // 장바구니 체크박스 훅
-    let eachItemPrice = 0;
-    setSelectedItemsPrice(eachItemPrice);
-  }, [checkedItemList]);
-
-  useEffect(() => {
-    // 첫 렌더링 시 장바구니 조회
-    API.getbasket(token).then((data) => {
-      setBasketItemsList(data.cartItemResponseList);
-      console.log(data.cartItemResponseList);
-    });
-  }, []);
 
   //function
   const handleCheckedAll = (checked) => {
@@ -72,20 +59,24 @@ const ShoppingBasketPage = () => {
     ); // 선택 해제된 item 제거
     console.log(basketItemsList);
   };
-  // 보류 ,,...
-  // const handleDeltedSelectedItems = () => {
-  //   checkedIdList.sort();
-  //   checkedIdList.forEach((id) => {
-  //     basketItemsList.map((item) => {
-  //       if (item.id === id) {
-  //         basketItemsList.splice(item, 1);
-  //         console.log(basketItemsList);
-  //       }
-  //     });
-  //   });
-  //   setBasketItemsList(basketItemsList);
-  //   console.log(basketItemsList);
-  // };
+  useEffect(() => {
+    // 장바구니 체크박스
+    let eachItemPrice = 0;
+    checkedItemList.map((item) => {
+      eachItemPrice += item.price;
+      return eachItemPrice;
+    });
+    console.log(eachItemPrice);
+    setSelectedItemsPrice(eachItemPrice);
+  }, [checkedItemList]);
+
+  useEffect(() => {
+    // 첫 렌더링 시 장바구니 조회
+    API.getbasket(token).then((data) => {
+      setBasketItemsList(data?.cartItemResponseList);
+    });
+  }, []);
+
   return (
     <>
       {basketItemsList?.length !== 0 ? (
@@ -122,6 +113,9 @@ const ShoppingBasketPage = () => {
                   <th className="shopping-basket__thead--button">선택</th>
                 </tr>
               </thead>
+              {console.log(basketItemsList)}
+              {console.log(checkedIdList)}
+              {console.log(checkedItemList)}
               <tbody className="shopping-basket__tbody">
                 {basketItemsList?.map((item) => {
                   return (

@@ -41,7 +41,7 @@ const ShoppingItemDetail = () => {
       itemData.count !== "-"
     ) {
       API.putbasket(token, itemData.color, itemData.count).then((data) =>
-        alert(data?.data.validate.message)
+        console.log(data)
       );
     } else {
       alert("옵션을 선택해 주세요");
