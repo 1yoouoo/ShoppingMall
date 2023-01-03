@@ -1,9 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import API from "../API/Api";
 import StyledButton from "../Components/StyledButton";
 
 const ShoppingItemDetail = () => {
+  //hook
+  const itemColor = useRef();
+  const itemCount = useRef();
   const token = localStorage.getItem("token");
   const { item_id } = useParams();
   const [itemData, setItemData] = useState({
@@ -11,17 +14,8 @@ const ShoppingItemDetail = () => {
     item_id: "",
     name: "",
     price: "",
-    color: "-",
-    count: "-",
   });
 
-  const onChangeOption = (e) => {
-    setItemData({
-      ...itemData,
-      [e.target.name]: e.target.value,
-    });
-    console.log(e.target.value);
-  };
   const countLimit = (number) => {
     const result = [<option key="0">-</option>];
     for (let i = 1; i <= number; i++) {
@@ -34,15 +28,18 @@ const ShoppingItemDetail = () => {
     return result;
   };
   const onClickPutBasket = () => {
-    if (
-      itemData.color !== undefined &&
-      itemData.color !== "-" &&
-      itemData.count !== undefined &&
-      itemData.count !== "-"
-    ) {
-      API.putbasket(token, itemData.color, itemData.count).then((data) =>
-        console.log(data)
-      );
+    if (itemColor.current.value !== "-" && itemCount.current.value !== "-") {
+      API.putbasket(
+        token,
+        itemColor.current.value,
+        itemCount.current.value
+      ).then((data) => {
+        if (data?.data.validate !== null) {
+          alert(data.data.validate.message);
+        } else {
+          alert(data?.data.error.message);
+        }
+      });
     } else {
       alert("옵션을 선택해 주세요");
     }
@@ -51,13 +48,14 @@ const ShoppingItemDetail = () => {
     API.getitem(item_id).then((data) => {
       setItemData(data);
     });
-  }, []);
+    console.log(itemColor.current.value);
+    console.log(itemCount.current.value);
+  }, [item_id]);
   return (
     <>
       {!itemData && <p>Loading ...</p>}
       {itemData && (
         <div className="shopping-item-detail">
-          {console.log(itemData)}
           <div className="shopping-item-detail__form">
             <div className="shopping-item-detail__form--img">
               <img
@@ -103,7 +101,8 @@ const ShoppingItemDetail = () => {
               <select
                 name="color"
                 value={itemData.itemColorList.color}
-                onChange={onChangeOption}
+                ref={itemColor}
+                onChange={() => console.log(itemColor.current.value)}
               >
                 <option key="0">-</option>
                 {itemData.itemColorList.map((colorData) => (
@@ -118,11 +117,7 @@ const ShoppingItemDetail = () => {
             </div>
             <div>
               <b>수량 : </b>
-              <select
-                name="count"
-                value={itemData.count}
-                onChange={onChangeOption}
-              >
+              <select name="count" value={itemData.count} ref={itemCount}>
                 {countLimit(20)}
               </select>
             </div>

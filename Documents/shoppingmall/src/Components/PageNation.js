@@ -1,17 +1,12 @@
-import { useState } from "react";
-
-const PageNation = ({ currentPage, totalPages, onClickPageNumber }) => {
-  const [test, setTest] = useState(currentPage);
+const PageNation = ({ totalPages, onClickPageNumber }) => {
   //function
 
   const pageNation = () => {
     let pageNumber = [];
     for (let page = 1; page <= totalPages; page++) {
       pageNumber.push(
-        <ol className="page__page-number">
-          <li key={page} onClick={onClickPageNumber}>
-            {page}
-          </li>
+        <ol key={page} className="page__page-number">
+          <li onClick={onClickPageNumber}>{page}</li>
         </ol>
       );
     }

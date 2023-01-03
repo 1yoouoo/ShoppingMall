@@ -76,14 +76,7 @@ const API = {
     const data = await axios.get(`${API_base}/user/${token}`);
     return data;
   },
-  // getuser: async (token) => {
-  //   const data = await axios.get(`${API_base}/user`, {
-  //     params: {
-  //       accessToken: token,
-  //     },
-  //   });
-  //   return data;
-  // },
+
   changeuser: async (token, password, phone_number, email) => {
     const data = await axios.put(`${API_base}/user`, {
       accessToken: token,

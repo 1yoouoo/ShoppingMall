@@ -41,6 +41,7 @@ const MyPage = () => {
         alert(data.data.validate.message);
         setChangeUserData(!changeUserData);
       }
+      console.log(data);
     });
   };
   const onChange = (e) => {

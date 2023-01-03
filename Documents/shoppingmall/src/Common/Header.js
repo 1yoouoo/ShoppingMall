@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import HeaderRight from "../Components/HeaderRight";
 import MainLogo from "../Components/MainLogo";
 import MobileActivateSearch from "../Components/MobileActivateSearch";
-import API from "../API/Api";
 import NavigatorItem from "../Components/NavigatorItem";
 
 const Header = () => {
@@ -16,7 +15,7 @@ const Header = () => {
       console.log("로그인 안됨");
       setIsLogin(false);
     }
-  });
+  }, []);
   //hook
   const navigate = useNavigate();
   //state

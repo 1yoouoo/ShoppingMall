@@ -30,7 +30,6 @@ const ShoppingBasketPage = () => {
       setCheckedIdList([]);
       setCheckedItemList([]);
     }
-    console.log(checkedIdList);
   };
   const handleCheckedItem = (checked, cart_item_id) => {
     if (checked) {
@@ -40,7 +39,6 @@ const ShoppingBasketPage = () => {
         (item) => item.cart_item_id === cart_item_id
       );
       setCheckedItemList((prev) => [...prev, eachItem]);
-      console.log(checkedItemList);
     } else {
       // 단일 선택 해제 시 체크된 아이템을 제외한 배열
       setCheckedIdList(checkedIdList.filter((el) => el !== cart_item_id)); // 선택 해제된 id 제거
@@ -48,7 +46,6 @@ const ShoppingBasketPage = () => {
         checkedItemList.filter((item) => item.cart_item_id !== cart_item_id)
       ); // 선택 해제된 item 제거
     }
-    console.log("checkedIdList", checkedIdList);
   };
   const hanbleDeletedAll = () => {
     setBasketItemsList([]);
@@ -57,7 +54,6 @@ const ShoppingBasketPage = () => {
     setBasketItemsList(
       basketItemsList.filter((item) => item.cart_item_id !== cart_item_id)
     ); // 선택 해제된 item 제거
-    console.log(basketItemsList);
   };
   useEffect(() => {
     // 장바구니 체크박스
@@ -66,7 +62,6 @@ const ShoppingBasketPage = () => {
       eachItemPrice += item.price;
       return eachItemPrice;
     });
-    console.log(eachItemPrice);
     setSelectedItemsPrice(eachItemPrice);
   }, [checkedItemList]);
 
@@ -113,9 +108,6 @@ const ShoppingBasketPage = () => {
                   <th className="shopping-basket__thead--button">선택</th>
                 </tr>
               </thead>
-              {console.log(basketItemsList)}
-              {console.log(checkedIdList)}
-              {console.log(checkedItemList)}
               <tbody className="shopping-basket__tbody">
                 {basketItemsList?.map((item) => {
                   return (
@@ -185,8 +177,20 @@ const ShoppingBasketPage = () => {
                 <tr className="shopping-basket__tfoot--summary">
                   <td colSpan={2}>[기본 배송]</td>
                   <td colSpan={6}>
-                    상품구매금액 <b>{selectedItemsPrice}</b>원 + 배송비 0원 =
-                    합계 :<span id="totalPrice"> {selectedItemsPrice}원</span>
+                    상품구매금액{" "}
+                    <b>
+                      {[selectedItemsPrice]
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                    </b>
+                    원 + 배송비 0원 = 합계 :
+                    <span id="totalPrice">
+                      {" "}
+                      {[selectedItemsPrice]
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      원
+                    </span>
                   </td>
                 </tr>
               </tfoot>
@@ -219,9 +223,20 @@ const ShoppingBasketPage = () => {
                 </thead>
                 <tbody>
                   <tr>
-                    <td>{selectedItemsPrice}원</td>
+                    <td>
+                      {[selectedItemsPrice]
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      원
+                    </td>
                     <td>0원</td>
-                    <td>= {selectedItemsPrice}원</td>
+                    <td>
+                      ={" "}
+                      {[selectedItemsPrice]
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      원
+                    </td>
                   </tr>
                 </tbody>
               </table>

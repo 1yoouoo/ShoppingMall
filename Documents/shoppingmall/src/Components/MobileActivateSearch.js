@@ -1,6 +1,6 @@
 import MainLogo from "./MainLogo";
 
-const MobileActivateSearch = ({ onClickSearchToggle }) => {
+const MobileActivateSearch = () => {
   return (
     <div className="activate-search">
       <div className="activate-search__search">
