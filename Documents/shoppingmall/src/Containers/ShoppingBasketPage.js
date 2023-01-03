@@ -23,7 +23,6 @@ const ShoppingBasketPage = () => {
       const itemArray = basketItemsList.map((el) => el);
       setCheckedIdList(idArray);
       setCheckedItemList(itemArray);
-      console.log(itemArray);
     } else {
       // 전체 선택 해제 시 checkItems 를 빈 배열로 상태 업데이트
       setCheckedIdList([]);
