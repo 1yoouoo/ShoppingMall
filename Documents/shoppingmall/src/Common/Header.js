@@ -6,16 +6,6 @@ import MobileActivateSearch from "../Components/MobileActivateSearch";
 import NavigatorItem from "../Components/NavigatorItem";
 
 const Header = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  useEffect(() => {
-    if (localStorage.getItem("token") !== null) {
-      console.log("로그인 됨");
-      setIsLogin(true);
-    } else {
-      console.log("로그인 안됨");
-      setIsLogin(false);
-    }
-  }, []);
   //hook
   const navigate = useNavigate();
   //state
@@ -120,13 +110,10 @@ const Header = () => {
           />
         </ul>
         <div className="header-form__right--mobile">
-          <HeaderRight
-            isLogin={isLogin}
-            onClickSearchToggle={onClickSearchToggle}
-          />
+          <HeaderRight onClickSearchToggle={onClickSearchToggle} />
         </div>
         <div className="header-form__right--desktop">
-          <HeaderRight isLogin={isLogin} />
+          <HeaderRight />
         </div>
       </div>
     </header>

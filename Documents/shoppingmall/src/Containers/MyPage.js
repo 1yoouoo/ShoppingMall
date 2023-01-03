@@ -14,7 +14,7 @@ const MyPage = () => {
       });
     });
   }, []);
-  const [changeUserData, setChangeUserData] = useState(false);
+  const [isChangedUserData, setIsChangedUserData] = useState(false);
   const [userData, setUserData] = useState({
     login_id: "",
     name: "",
@@ -24,7 +24,7 @@ const MyPage = () => {
   });
   //function
   const onClickChange = () => {
-    setChangeUserData(!changeUserData);
+    setIsChangedUserData(!isChangedUserData);
   };
   const onClickSave = () => {
     API.changeuser(
@@ -39,7 +39,7 @@ const MyPage = () => {
       } else {
         // success
         alert(data.data.validate.message);
-        setChangeUserData(!changeUserData);
+        setIsChangedUserData(!isChangedUserData);
       }
       console.log(data);
     });
@@ -55,39 +55,39 @@ const MyPage = () => {
       <form className="my-page__form">
         <span className="my-page__form--login-id">
           <label>아이디 : </label>
-          <span>{userData && userData.login_id}</span>
+          <span>{userData?.login_id}</span>
         </span>
         <span className="my-page__form--name">
           <label>이름 : </label>
-          <span>{userData && userData.name}</span>
+          <span>{userData?.name}</span>
         </span>
         <span className="my-page__form--phone_number">
           <label>휴대폰 : </label>
-          {changeUserData ? (
+          {isChangedUserData ? (
             <input
-              placeholder={userData && userData.phone_number}
+              placeholder={userData?.phone_number}
               onChange={onChange}
               name="phone_number"
               value={userData.phone_number}
             />
           ) : (
-            <span>{userData && userData.phone_number}</span>
+            <span>{userData?.phone_number}</span>
           )}
         </span>
         <span className="my-page__form--email">
           <label>이메일 : </label>
-          {changeUserData ? (
+          {isChangedUserData ? (
             <input
-              placeholder={userData && userData.email}
+              placeholder={userData?.email}
               onChange={onChange}
               name="email"
               value={userData.email}
             />
           ) : (
-            <span>{userData && userData.email}</span>
+            <span>{userData?.email}</span>
           )}
         </span>
-        {changeUserData && (
+        {isChangedUserData && (
           <span>
             <label>비밀번호 :</label>
             <input
@@ -98,7 +98,7 @@ const MyPage = () => {
           </span>
         )}
         <span>
-          {changeUserData ? (
+          {isChangedUserData ? (
             <button type="button" onClick={onClickSave}>
               정보 저장하기
             </button>

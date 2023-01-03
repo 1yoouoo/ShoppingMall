@@ -69,7 +69,9 @@ const API = {
     return data.data.data;
   },
   logout: async (token) => {
+    //3
     const data = await axios.post(`${API_base}/logout`, { accessToken: token });
+    //4
     return data;
   },
   getuser: async (token) => {

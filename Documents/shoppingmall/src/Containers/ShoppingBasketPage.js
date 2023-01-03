@@ -19,12 +19,11 @@ const ShoppingBasketPage = () => {
   const handleCheckedAll = (checked) => {
     if (checked) {
       // 전체 선택 클릭 시 데이터의 모든 아이템(id)를 담은 배열로 checkItems 상태 업데이트
-      const idArray = [];
-      const itemArray = [];
-      basketItemsList.forEach((el) => idArray.push(el.cart_item_id));
-      basketItemsList.forEach((el) => itemArray.push(el));
+      const idArray = basketItemsList.map((el) => el.cart_item_id);
+      const itemArray = basketItemsList.map((el) => el);
       setCheckedIdList(idArray);
       setCheckedItemList(itemArray);
+      console.log(itemArray);
     } else {
       // 전체 선택 해제 시 checkItems 를 빈 배열로 상태 업데이트
       setCheckedIdList([]);

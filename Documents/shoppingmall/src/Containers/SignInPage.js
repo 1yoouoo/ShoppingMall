@@ -25,8 +25,8 @@ const SignInPage = () => {
   };
 
   // API CALL
-  const handleSubmit = () => {
-    API.signin(inputValue.login_id, inputValue.password).then((data) => {
+  const handleSubmit = async () => {
+    await API.signin(inputValue.login_id, inputValue.password).then((data) => {
       if (data.data.validate !== null || undefined) {
         let token = data.headers.token;
         localStorage.setItem("token", token);

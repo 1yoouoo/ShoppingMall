@@ -1,13 +1,16 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../API/Api";
 
-const HeaderRight = ({ onClickSearchToggle, isLogin }) => {
+const HeaderRight = ({ onClickSearchToggle }) => {
+  const [isLogin, setIsLogin] = useState(false);
   //state
+  const token = localStorage.getItem("token");
   const navigate = useNavigate();
   //function
-  const onClickLogOut = () => {
-    const token = localStorage.getItem("token");
-    API.logout(token).then((data) => console.log(data));
+  const onClickLogOut = async () => {
+    let data = await API.logout(token);
+    alert(data?.data.validate.message);
     localStorage.clear();
     navigate("/homepage");
   };
@@ -17,6 +20,15 @@ const HeaderRight = ({ onClickSearchToggle, isLogin }) => {
   const onClickBasket = () => {
     navigate("/shoppingbasketpage");
   };
+  useEffect(() => {
+    if (token !== null) {
+      console.log("로그인 됨");
+      setIsLogin(true);
+    } else {
+      console.log("로그인 안됨");
+      setIsLogin(false);
+    }
+  }, [token]);
   return (
     <div className="header-form__right">
       <span className="header-form__icon--search" onClick={onClickSearchToggle}>
