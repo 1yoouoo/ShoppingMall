@@ -19,21 +19,20 @@ const SignUpPage = () => {
   //function
 
   // API CALL
-  const handleSubmit = () => {
-    API.signup(
+  const handleSubmit = async () => {
+    const data = await API.signup(
       inputValue.login_id,
       inputValue.password,
       inputValue.name,
       inputValue.phone_number,
       inputValue.email
-    ).then((data) => {
-      if (data.data.validate === null) {
-        alert(data.data.error?.message);
-      } else {
-        alert("회원가입 성공 !");
-        navigate("/signin");
-      }
-    });
+    );
+    if (data.data.validate === null) {
+      alert(data.data.error?.message);
+    } else {
+      alert("회원가입 성공 !");
+      navigate("/signin");
+    }
   };
 
   return (
@@ -42,7 +41,6 @@ const SignUpPage = () => {
       <div className="signup__form">
         <table className="signup__form--table">
           <tbody>
-            {/* 아이디 */}
             <tr>
               <td>아이디</td>
               <td>
@@ -54,7 +52,6 @@ const SignUpPage = () => {
                 <span>(영어소문자/숫자, 8글자 이상)</span>
               </td>
             </tr>
-            {/* 비밀번호 */}
             <tr>
               <td>비밀번호</td>
               <td>
@@ -66,8 +63,6 @@ const SignUpPage = () => {
                 <span>(8글자 이상, 대문자 포함)</span>
               </td>
             </tr>
-
-            {/* 이름 */}
             <tr>
               <td>이름</td>
               <td>
@@ -78,7 +73,6 @@ const SignUpPage = () => {
                 />
               </td>
             </tr>
-            {/* 휴대전화 */}
             <tr>
               <td>휴대전화</td>
               <td>
@@ -93,7 +87,6 @@ const SignUpPage = () => {
                 <span> - 빼고 입력 해 주세요</span>
               </td>
             </tr>
-            {/* 이메일 */}
             <tr>
               <td>이메일</td>
               <td>

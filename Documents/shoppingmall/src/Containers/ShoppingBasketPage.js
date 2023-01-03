@@ -57,7 +57,7 @@ const ShoppingBasketPage = () => {
     // 장바구니 체크박스
     let eachItemPrice = 0;
     checkedItemList.map((item) => {
-      eachItemPrice += item.price;
+      eachItemPrice += item.price * item.count;
       return eachItemPrice;
     });
     setSelectedItemsPrice(eachItemPrice);
@@ -65,10 +65,12 @@ const ShoppingBasketPage = () => {
 
   useEffect(() => {
     // 첫 렌더링 시 장바구니 조회
-    API.getbasket(token).then((data) => {
-      setBasketItemsList(data?.cartItemResponseList);
-    });
-  }, []);
+    const getBasket = async () => {
+      const data = await API.getbasket(token);
+      setBasketItemsList(data?.cartItemResponseList); //check!!!!
+    };
+    getBasket();
+  }, [token]);
 
   return (
     <>

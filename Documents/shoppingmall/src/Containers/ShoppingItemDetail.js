@@ -27,29 +27,28 @@ const ShoppingItemDetail = () => {
     }
     return result;
   };
-  const onClickPutBasket = () => {
+  const onClickPutBasket = async () => {
     if (itemColor.current.value !== "-" && itemCount.current.value !== "-") {
-      API.putbasket(
+      const data = await API.putbasket(
         token,
         itemColor.current.value,
         itemCount.current.value
-      ).then((data) => {
-        if (data?.data.validate !== null) {
-          alert(data.data.validate.message);
-        } else {
-          alert(data?.data.error.message);
-        }
-      });
+      );
+      if (data?.data.validate !== null) {
+        alert(data.data.validate.message);
+      } else {
+        alert(data?.data.error.message);
+      }
     } else {
       alert("옵션을 선택해 주세요");
     }
   };
   useEffect(() => {
-    API.getitem(item_id).then((data) => {
+    const getItem = async () => {
+      const data = await API.getitem(item_id);
       setItemData(data);
-    });
-    console.log(itemColor.current.value);
-    console.log(itemCount.current.value);
+    };
+    getItem();
   }, [item_id]);
   return (
     <>

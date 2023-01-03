@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-const ShoppingList = ({ itemsData, sortList, sortingData, sort }) => {
+const ShoppingList = ({ itemsData }) => {
+  const sortList = ["LOW PRICE", "HIGH PRICE", "NEW", "HIT"];
+
   const navigate = useNavigate();
 
   const onClickTest = (item_id) => {
@@ -24,45 +26,25 @@ const ShoppingList = ({ itemsData, sortList, sortingData, sort }) => {
           </span>
         </div>
         <div className="shopping-list__form--bottom">
-          {sort
-            ? sortingData &&
-              sortingData.map((item) => {
-                return (
-                  <div
-                    className="shopping-list__item"
-                    key={item.item_id}
-                    onClick={() => onClickTest(item.item_id)}
-                  >
-                    <img
-                      src={require("../Assets/shopping-list-sample-1.jpeg")}
-                      alt="item1"
-                    />
-                    <span className="shopping-list__item--title">
-                      {item.name}
-                    </span>
-                    <b className="shopping-list__item--price">{item.price}</b>
-                  </div>
-                );
-              })
-            : itemsData.itemListResponses &&
-              itemsData.itemListResponses.map((item) => {
-                return (
-                  <div
-                    className="shopping-list__item"
-                    key={item.item_id}
-                    onClick={() => onClickTest(item.item_id)}
-                  >
-                    <img
-                      src={require("../Assets/shopping-list-sample-1.jpeg")}
-                      alt="item1"
-                    />
-                    <span className="shopping-list__item--title">
-                      {item.name}
-                    </span>
-                    <b className="shopping-list__item--price">{item.price}</b>
-                  </div>
-                );
-              })}
+          {itemsData.itemListResponses &&
+            itemsData.itemListResponses.map((item) => {
+              return (
+                <div
+                  className="shopping-list__item"
+                  key={item.item_id}
+                  onClick={() => onClickTest(item.item_id)}
+                >
+                  <img
+                    src={require("../Assets/shopping-list-sample-1.jpeg")}
+                    alt="item1"
+                  />
+                  <span className="shopping-list__item--title">
+                    {item.name}
+                  </span>
+                  <b className="shopping-list__item--price">{item.price}</b>
+                </div>
+              );
+            })}
         </div>
       </div>
     </div>

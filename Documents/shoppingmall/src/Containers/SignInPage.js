@@ -26,16 +26,15 @@ const SignInPage = () => {
 
   // API CALL
   const handleSubmit = async () => {
-    await API.signin(inputValue.login_id, inputValue.password).then((data) => {
-      if (data.data.validate !== null || undefined) {
-        let token = data.headers.token;
-        localStorage.setItem("token", token);
-        alert("로그인 성공");
-        navigate("/homepage");
-      } else {
-        alert("로그인 실패");
-      }
-    });
+    const data = await API.signin(inputValue.login_id, inputValue.password);
+    if (data.data.validate !== null || undefined) {
+      let token = data.headers.token;
+      localStorage.setItem("token", token);
+      alert("로그인 성공");
+      navigate("/homepage");
+    } else {
+      alert("로그인 실패");
+    }
   };
 
   return (
