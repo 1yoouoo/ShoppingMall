@@ -876,7 +876,7 @@
       width: 60px;
     }
     &--count {
-      width: 23px;
+      width: 80px;
     }
     &--deliveryFee {
       width: 60px;
@@ -895,6 +895,16 @@
       img {
         width: 150px;
         height: 150px;
+      }
+    }
+    &--count {
+      span {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        button {
+          width: 25px;
+        }
       }
     }
     &--button {

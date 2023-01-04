@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../API/Api";
 import StyledButton from "../Components/StyledButton";
@@ -48,10 +48,29 @@ const ShoppingBasketPage = () => {
   const hanbleDeletedAll = () => {
     setBasketItemsList([]);
   };
-  const hanbleDeletedItem = (cart_item_id) => {
-    setBasketItemsList(
-      basketItemsList.filter((item) => item.cart_item_id !== cart_item_id)
-    ); // 선택 해제된 item 제거
+  const hanbleDeletedItem = async (cart_item_id) => {
+    const data = await API.deletebasket(token, cart_item_id);
+    console.log(data);
+    if (data?.data.validate.code === "delete") {
+      setBasketItemsList(
+        basketItemsList.filter((item) => item.cart_item_id !== cart_item_id)
+      ); // 선택 해제된 item 제거
+    } else {
+      alert(data?.data.error.message);
+    }
+  };
+  const onClickPlus = (item) => {
+    item.count++;
+    setBasketItemsList((prev) => [...prev]);
+  };
+  const onClickMinus = (item) => {
+    if (item.count !== 0) {
+      item.count--;
+      setBasketItemsList((prev) => [...prev]);
+    } else {
+      // redirect
+    }
+    console.log(item.count);
   };
   useEffect(() => {
     // 장바구니 체크박스
@@ -67,7 +86,8 @@ const ShoppingBasketPage = () => {
     // 첫 렌더링 시 장바구니 조회
     const getBasket = async () => {
       const data = await API.getbasket(token);
-      setBasketItemsList(data?.cartItemResponseList); //check!!!!
+      setBasketItemsList(data?.cartItemResponseList);
+      console.log(data);
     };
     getBasket();
   }, [token]);
@@ -144,7 +164,11 @@ const ShoppingBasketPage = () => {
                         {item.price}원
                       </td>
                       <td className="shopping-basket__tbody--count">
-                        {item.count}
+                        <span>
+                          <span>{item.count}</span>
+                          <button onClick={() => onClickPlus(item)}>+</button>
+                          <button onClick={() => onClickMinus(item)}>-</button>
+                        </span>
                       </td>
                       <td className="shopping-basket__tbody--deliveryFee">
                         무료
@@ -164,7 +188,7 @@ const ShoppingBasketPage = () => {
                           background="#e6e6e6"
                           color="black"
                           border="none"
-                          onClick={() => hanbleDeletedItem(item.id)}
+                          onClick={() => hanbleDeletedItem(item.cart_item_id)}
                         >
                           삭제하기
                         </StyledSmallButton>
