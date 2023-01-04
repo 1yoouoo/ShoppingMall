@@ -10,7 +10,7 @@ const HeaderRight = ({ onClickSearchToggle }) => {
   //function
   const onClickLogOut = async () => {
     let data = await API.logout(token);
-    alert(data?.data.validate.message);
+    alert(data?.data.validate?.message);
     localStorage.clear();
     navigate("/homepage");
   };

@@ -113,6 +113,10 @@ const API = {
     );
     return data;
   },
+  getstocklist: async () => {
+    const data = await axios.get(`${API_base}/items/stock`);
+    return data;
+  },
 };
 
 export default API;

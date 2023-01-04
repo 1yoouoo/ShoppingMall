@@ -69,9 +69,11 @@ const ShoppingBasketPage = () => {
     }
   };
   const onClickMinus = async (item) => {
-    if (item.count !== 0) {
-      item.count--;
-      const data = await API.updatecountbasket(item.cart_item_id, item.count);
+    item.count--;
+    console.log(item.count);
+    console.log(basketItemsList);
+    const data = await API.updatecountbasket(item.cart_item_id, item.count);
+    if (item.count > 0) {
       if (data?.data.validate.code === "update") {
         setBasketItemsList((prev) => [...prev]);
       } else {
@@ -79,10 +81,12 @@ const ShoppingBasketPage = () => {
       }
       setBasketItemsList((prev) => [...prev]);
     } else {
-      // redirect fix!
-      navigate("/shoppingbasketpage");
+      setBasketItemsList(
+        basketItemsList.filter((e) => e.cart_item_id !== item.cart_item_id)
+      );
     }
   };
+
   useEffect(() => {
     // 장바구니 체크박스
     let eachItemPrice = 0;
