@@ -100,6 +100,13 @@ const API = {
     const data = await axios.get(`${API_base}/cart/${token}`);
     return data.data.data;
   },
+  updatecountbasket: async (cart_item_id, count) => {
+    const data = await axios.put(`${API_base}/cartitem/${cart_item_id}`, {
+      cart_item_id: cart_item_id,
+      count: count,
+    });
+    return data;
+  },
   deletebasket: async (token, cart_item_id) => {
     const data = await axios.delete(
       `${API_base}/${token}/cartitem/${cart_item_id}`

@@ -59,18 +59,29 @@ const ShoppingBasketPage = () => {
       alert(data?.data.error.message);
     }
   };
-  const onClickPlus = (item) => {
+  const onClickPlus = async (item) => {
     item.count++;
-    setBasketItemsList((prev) => [...prev]);
-  };
-  const onClickMinus = (item) => {
-    if (item.count !== 0) {
-      item.count--;
+    const data = await API.updatecountbasket(item.cart_item_id, item.count);
+    if (data?.data.validate.code === "update") {
       setBasketItemsList((prev) => [...prev]);
     } else {
-      // redirect
+      alert(data?.data.error.message);
     }
-    console.log(item.count);
+  };
+  const onClickMinus = async (item) => {
+    if (item.count !== 0) {
+      item.count--;
+      const data = await API.updatecountbasket(item.cart_item_id, item.count);
+      if (data?.data.validate.code === "update") {
+        setBasketItemsList((prev) => [...prev]);
+      } else {
+        alert(data?.data.error.message);
+      }
+      setBasketItemsList((prev) => [...prev]);
+    } else {
+      // redirect fix!
+      navigate("/shoppingbasketpage");
+    }
   };
   useEffect(() => {
     // 장바구니 체크박스
