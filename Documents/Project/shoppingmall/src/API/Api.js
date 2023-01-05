@@ -57,7 +57,7 @@ const API = {
       item_id: item_id,
       color_id: color_id,
     });
-    return data.data.data;
+    return data;
   },
   getitems: async (page) => {
     const data = await axios.get(`${API_base}/items`, {
