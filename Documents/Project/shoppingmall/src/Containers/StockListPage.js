@@ -3,8 +3,11 @@ import API from "../API/Api";
 
 const StockListPage = () => {
   const [stockList, setStockList] = useState();
-  const [test, setTest] = useState();
+  const [changedStockCount, setChangedStockCount] = useState("");
   //function
+  const onChangeStockCount = (e) => {
+    setChangedStockCount(e.target.value);
+  };
   const onClickDelete = async (item) => {
     const data = await API.itemdelete(item.item_id, item.selected_color_id);
     console.log(data);
@@ -13,7 +16,9 @@ const StockListPage = () => {
     } else {
       alert("ERROR");
     }
+    setStockList(stockList.filter((stock) => stock.item_id !== item.item_id));
   };
+
   const filteredStock = (item) => {
     const filteredStock = item.itemColorListResponse.find(
       (color) => color.item_color_id == item.selected_color_id // ==?????????????
@@ -30,6 +35,8 @@ const StockListPage = () => {
     console.log(item);
     setStockList((prev) => [...prev]);
   };
+
+  // 재고 조회 랜더링
   useEffect(() => {
     const getStockList = async () => {
       const data = await API.getstocklist();
@@ -38,6 +45,21 @@ const StockListPage = () => {
     };
     getStockList();
   }, []);
+  // 재고 조회 랜더링
+
+  const onChangeStockButton = async (item) => {
+    const data = await API.updatestock(
+      item.selected_color_id,
+      changedStockCount
+    );
+    if (data.data.validate !== null) {
+      alert(data.data.validate.message);
+      setStockList((prev) => [...prev]);
+    } else {
+      alert(data.data.error.message);
+    }
+  };
+
   return (
     <>
       <div className="shopping-basket">
@@ -93,7 +115,20 @@ const StockListPage = () => {
                         {item.price}원
                       </td>
                       <td className="shopping-basket__tbody--count">
-                        <span>{item?.thisStock}개</span>
+                        <span>
+                          {item.thisStock >= 0 && (
+                            <>
+                              <input
+                                placeholder={item.thisStock}
+                                value={changedStockCount}
+                                onChange={onChangeStockCount}
+                              />
+                              <button onClick={() => onChangeStockButton(item)}>
+                                변경
+                              </button>
+                            </>
+                          )}
+                        </span>
                       </td>
                       <td className="shopping-basket__tbody--count">
                         <span>

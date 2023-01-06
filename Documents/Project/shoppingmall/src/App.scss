@@ -889,8 +889,6 @@
     }
   }
   &__tbody {
-    &--checkBox {
-    }
     &--img {
       img {
         width: 150px;
@@ -903,7 +901,10 @@
         align-items: center;
         justify-content: center;
         button {
-          width: 25px;
+          width: 40px;
+        }
+        input {
+          width: 30px;
         }
       }
     }

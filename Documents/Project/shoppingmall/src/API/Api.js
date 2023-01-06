@@ -128,6 +128,13 @@ const API = {
     const data = await axios.get(`${API_base}/items/stock`);
     return data;
   },
+  updatestock: async (color_id, stock) => {
+    const data = await axios.put(`${API_base}/${color_id}`, {
+      color_id: color_id,
+      stock: stock,
+    });
+    return data;
+  },
 };
 
 export default API;
