@@ -135,6 +135,17 @@ const API = {
     });
     return data;
   },
+  orderbasket: async (token, cart_item_id) => {
+    const data = await axios.post(`${API_base}/orders`, {
+      accessToken: token,
+      cart_item_id: cart_item_id,
+    });
+    return data;
+  },
+  getorderlist: async (token) => {
+    const data = await axios.get(`${API_base}/orders/${token}`);
+    return data;
+  },
 };
 
 export default API;

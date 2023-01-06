@@ -6,7 +6,6 @@ import StyledSmallButton from "../Components/StyledSmallButton";
 
 const ShoppingBasketPage = () => {
   const token = localStorage.getItem("token");
-
   //state
   const navigate = useNavigate();
   const [basketItemsList, setBasketItemsList] = useState([]);
@@ -44,6 +43,7 @@ const ShoppingBasketPage = () => {
         checkedItemList.filter((item) => item.cart_item_id !== cart_item_id)
       ); // 선택 해제된 item 제거
     }
+    console.log(checkedIdList);
   };
   const hanbleDeletedAll = () => {
     setBasketItemsList([]);
@@ -92,6 +92,17 @@ const ShoppingBasketPage = () => {
         basketItemsList.filter((e) => e.cart_item_id !== item.cart_item_id)
       );
     }
+  };
+  const orderBasket = async (item) => {
+    let tem_cart_item_id = [];
+    tem_cart_item_id.push(item.cart_item_id);
+    const data = await API.orderbasket(token, tem_cart_item_id);
+    console.log(item.cart_item_id);
+    console.log(data);
+  };
+  const orderBaskets = async () => {
+    const data = await API.orderbasket(token, checkedIdList);
+    console.log(data);
   };
 
   useEffect(() => {
@@ -198,6 +209,7 @@ const ShoppingBasketPage = () => {
                           background="#e6e6e6"
                           color="black"
                           border="none"
+                          onClick={() => orderBasket(item)}
                         >
                           주문하기
                         </StyledSmallButton>
@@ -294,6 +306,7 @@ const ShoppingBasketPage = () => {
                   background="#e6e6e6"
                   color="black"
                   border="none"
+                  onClick={orderBaskets}
                 >
                   선택상품주문
                 </StyledSmallButton>
