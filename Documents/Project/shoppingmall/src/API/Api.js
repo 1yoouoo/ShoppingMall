@@ -1,6 +1,6 @@
 import axios from "axios";
 // AWS API
-const API_base = "http://api.mullae.com";
+const API_base = "http://3.36.8.105";
 
 // LOCAL API
 // const API_base = "http://192.168.35.126:80";

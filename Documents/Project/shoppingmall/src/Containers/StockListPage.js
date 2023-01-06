@@ -3,23 +3,32 @@ import API from "../API/Api";
 
 const StockListPage = () => {
   const [stockList, setStockList] = useState();
-  const [selectedColor, setSelectedColor] = useState();
-
+  const [test, setTest] = useState();
   //function
   const onClickDelete = async (item) => {
-    const data = await API.itemdelete(item.item_id, selectedColor);
+    const data = await API.itemdelete(item.item_id, item.selected_color_id);
     console.log(data);
     if (data?.data.validate.code === "delete") {
       alert(data.data.validate.message);
-      setSelectedColor();
     } else {
       alert("ERROR");
     }
   };
+  const filteredStock = (item) => {
+    const filteredStock = item.itemColorListResponse.find(
+      (color) => color.item_color_id == item.selected_color_id // ==?????????????
+    );
+
+    item.thisStock = filteredStock?.stock;
+  };
   const handleChange = (e, item) => {
+    // selected_color_id 저장
     const color_id = e.target.value;
     item.selected_color_id = color_id;
+
+    filteredStock(item);
     console.log(item);
+    setStockList((prev) => [...prev]);
   };
   useEffect(() => {
     const getStockList = async () => {
@@ -28,7 +37,7 @@ const StockListPage = () => {
       console.log(data.data.data.content);
     };
     getStockList();
-  }, [selectedColor]);
+  }, []);
   return (
     <>
       <div className="shopping-basket">
@@ -84,7 +93,7 @@ const StockListPage = () => {
                         {item.price}원
                       </td>
                       <td className="shopping-basket__tbody--count">
-                        <span></span>
+                        <span>{item?.thisStock}개</span>
                       </td>
                       <td className="shopping-basket__tbody--count">
                         <span>
