@@ -22,10 +22,8 @@ const HeaderRight = ({ onClickSearchToggle }) => {
   };
   useEffect(() => {
     if (token !== null) {
-      console.log("로그인 됨");
       setIsLogin(true);
     } else {
-      console.log("로그인 안됨");
       setIsLogin(false);
     }
   }, [token]);

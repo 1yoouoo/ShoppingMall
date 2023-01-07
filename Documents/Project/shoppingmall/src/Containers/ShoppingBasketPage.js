@@ -66,7 +66,6 @@ const ShoppingBasketPage = () => {
       return eachItemPrice;
     });
     setSelectedItemsPrice(eachItemPrice);
-    console.log(selectedItemsPrice);
   };
   const onClickPlus = async (item) => {
     item.count++;
@@ -97,12 +96,29 @@ const ShoppingBasketPage = () => {
     let tem_cart_item_id = [];
     tem_cart_item_id.push(item.cart_item_id);
     const data = await API.orderbasket(token, tem_cart_item_id);
-    console.log(item.cart_item_id);
-    console.log(data);
+    if (data.data.validate !== null) {
+      alert(data.data.validate.message);
+      setBasketItemsList(
+        basketItemsList.filter((el) => el.cart_item_id !== item.cart_item_id)
+      );
+    } else {
+      alert(data.data.error.message);
+    }
+    setCheckedIdList([]);
+    setCheckedItemList([]);
   };
   const orderBaskets = async () => {
     const data = await API.orderbasket(token, checkedIdList);
     console.log(data);
+    if (data.data.validate !== null) {
+      alert(data.data.validate.message);
+      setBasketItemsList(
+        basketItemsList.filter((el) => !checkedIdList.includes(el.cart_item_id))
+      );
+    } else {
+      alert(data.data.error.message);
+    }
+    console.log(basketItemsList);
   };
 
   useEffect(() => {
