@@ -29,6 +29,7 @@ const SignInPage = () => {
     const data = await API.signin(inputValue.login_id, inputValue.password);
     if (data.data.validate !== null || undefined) {
       let token = data.headers.token;
+      console.log(data.headers);
       localStorage.setItem("token", token);
       alert("로그인 성공");
       navigate("/homepage");

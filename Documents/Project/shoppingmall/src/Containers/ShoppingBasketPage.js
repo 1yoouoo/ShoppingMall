@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import API from "../API/Api";
 import StyledButton from "../Components/StyledButton";
@@ -6,7 +6,6 @@ import StyledSmallButton from "../Components/StyledSmallButton";
 
 const ShoppingBasketPage = () => {
   const token = localStorage.getItem("token");
-
   //state
   const navigate = useNavigate();
   const [basketItemsList, setBasketItemsList] = useState([]);
@@ -44,6 +43,7 @@ const ShoppingBasketPage = () => {
         checkedItemList.filter((item) => item.cart_item_id !== cart_item_id)
       ); // 선택 해제된 item 제거
     }
+    console.log(checkedIdList);
   };
   const hanbleDeletedAll = () => {
     setBasketItemsList([]);
@@ -59,6 +59,15 @@ const ShoppingBasketPage = () => {
       alert(data?.data.error.message);
     }
   };
+  const calculatePrice = () => {
+    let eachItemPrice = 0;
+    checkedItemList.map((item) => {
+      eachItemPrice += item.price * item.count;
+      return eachItemPrice;
+    });
+    setSelectedItemsPrice(eachItemPrice);
+    console.log(selectedItemsPrice);
+  };
   const onClickPlus = async (item) => {
     item.count++;
     const data = await API.updatecountbasket(item.cart_item_id, item.count);
@@ -70,8 +79,6 @@ const ShoppingBasketPage = () => {
   };
   const onClickMinus = async (item) => {
     item.count--;
-    console.log(item.count);
-    console.log(basketItemsList);
     const data = await API.updatecountbasket(item.cart_item_id, item.count);
     if (item.count > 0) {
       if (data?.data.validate.code === "update") {
@@ -86,16 +93,22 @@ const ShoppingBasketPage = () => {
       );
     }
   };
+  const orderBasket = async (item) => {
+    let tem_cart_item_id = [];
+    tem_cart_item_id.push(item.cart_item_id);
+    const data = await API.orderbasket(token, tem_cart_item_id);
+    console.log(item.cart_item_id);
+    console.log(data);
+  };
+  const orderBaskets = async () => {
+    const data = await API.orderbasket(token, checkedIdList);
+    console.log(data);
+  };
 
   useEffect(() => {
     // 장바구니 체크박스
-    let eachItemPrice = 0;
-    checkedItemList.map((item) => {
-      eachItemPrice += item.price * item.count;
-      return eachItemPrice;
-    });
-    setSelectedItemsPrice(eachItemPrice);
-  }, [checkedItemList]);
+    calculatePrice();
+  });
 
   useEffect(() => {
     // 첫 렌더링 시 장바구니 조회
@@ -189,13 +202,14 @@ const ShoppingBasketPage = () => {
                         무료
                       </td>
                       <td className="shopping-basket__tbody--totalPrice">
-                        {item.totalPrice}원
+                        {item.price * item.count}원
                       </td>
                       <td className="shopping-basket__tbody--button">
                         <StyledSmallButton
                           background="#e6e6e6"
                           color="black"
                           border="none"
+                          onClick={() => orderBasket(item)}
                         >
                           주문하기
                         </StyledSmallButton>
@@ -224,7 +238,6 @@ const ShoppingBasketPage = () => {
                     </b>
                     원 + 배송비 0원 = 합계 :
                     <span id="totalPrice">
-                      {" "}
                       {[selectedItemsPrice]
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
@@ -293,6 +306,7 @@ const ShoppingBasketPage = () => {
                   background="#e6e6e6"
                   color="black"
                   border="none"
+                  onClick={orderBaskets}
                 >
                   선택상품주문
                 </StyledSmallButton>
