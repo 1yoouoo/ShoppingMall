@@ -1,8 +1,22 @@
-# cssDeveloping
-# community
-# ShoppingMall
-# ShoppingMall
-# ShoppingMall
-# ShoppingMall
-# shop-frontend
-# shop-frontend
+## 2022.12.18 ~ 2023. 01. 07
+## 프로젝트 쇼핑몰 만들기
+
+## 프로젝트 이름
+- ZOMBO 쇼핑몰
+
+## 프로젝트 동기
+- API통신에 익숙해지기
+- SASS(SCSS)사용해보기
+- github로 협업하기
+- state 관리 라이브러리 없이 완성해보기
+
+## 프로젝트 하면서 느낀 점
+- type관리가 안되면서 에러발생시 수정하는데 오래걸렸다.
+- 리액트를 사용하는데 어느정도 익숙해 졌지만 프로젝트가 점점 커짐에 따라 컴포넌트 관리가 안되고 있음을 느꼈다.
+- 좋은 코드를 만드려면 초반 설계가 무척 중요함을 알았다.
+
+## 사용된 기술
+- react
+- axios
+- styled-components
+- SCSS
