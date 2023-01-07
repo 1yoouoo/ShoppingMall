@@ -4,7 +4,6 @@ import HeaderRight from "../Components/HeaderRight";
 import MainLogo from "../Components/MainLogo";
 import MobileActivateSearch from "../Components/MobileActivateSearch";
 import NavigatorItem from "../Components/NavigatorItem";
-
 const Header = () => {
   //hook
   const navigate = useNavigate();

@@ -111,6 +111,14 @@ const API = {
     const data = await axios.get(`${API_base}/cart/${token}`);
     return data.data.data;
   },
+  getbasketcount: async (token) => {
+    const data = await axios.get(`${API_base}/cart/count`, {
+      params: {
+        accessToken: token,
+      },
+    });
+    return data;
+  },
   updatecountbasket: async (cart_item_id, count) => {
     const data = await axios.put(`${API_base}/cartitem/${cart_item_id}`, {
       cart_item_id: cart_item_id,
