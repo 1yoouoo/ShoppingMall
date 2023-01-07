@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 
 const NavigatorItem = ({ title, items, className }) => {
+  //hook
   const navigate = useNavigate();
   return (
     <li className={className}>

@@ -3,9 +3,10 @@ import { useNavigate } from "react-router-dom";
 import API from "../API/Api";
 
 const HeaderRight = ({ onClickSearchToggle }) => {
-  const [isLogin, setIsLogin] = useState(false);
-  //state
+  //token
   const token = localStorage.getItem("token");
+  //state
+  const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   //function
   const onClickLogOut = async () => {
@@ -20,6 +21,7 @@ const HeaderRight = ({ onClickSearchToggle }) => {
   const onClickBasket = () => {
     navigate("/shoppingbasketpage");
   };
+  //useEffect
   useEffect(() => {
     if (token !== null) {
       setIsLogin(true);

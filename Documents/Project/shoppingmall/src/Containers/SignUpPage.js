@@ -4,7 +4,9 @@ import StyledButton from "../Components/StyledButton";
 import { useNavigate } from "react-router-dom";
 
 const SignUpPage = () => {
+  //hook
   const navigate = useNavigate();
+  //state
   const [inputValue, setInputValue] = useState({
     login_id: "",
     password: "",
@@ -12,11 +14,10 @@ const SignUpPage = () => {
     phone_number: "010",
     email: "",
   });
+  //function
   const onChangeValue = (e) => {
     setInputValue({ ...inputValue, [e.target.name]: e.target.value });
   };
-
-  //function
 
   // API CALL
   const handleSubmit = async () => {

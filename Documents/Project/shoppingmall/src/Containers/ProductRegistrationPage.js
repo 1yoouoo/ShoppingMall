@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import API from "../API/Api";
 
 const ProductRegistrationPage = () => {
+  //hook
   const navigate = useNavigate();
+  //state
   const [fileImage, setFileImage] = useState("");
 
+  //function
   // 데이터 절약 useMemo
   const previewImage = useMemo(() => {
     return fileImage ? (

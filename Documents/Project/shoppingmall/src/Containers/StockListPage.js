@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../API/Api";
 
 const StockListPage = () => {
+  //state
   const [stockList, setStockList] = useState();
   const [changedStockCount, setChangedStockCount] = useState("");
   //function
@@ -10,7 +11,6 @@ const StockListPage = () => {
   };
   const onClickDelete = async (item) => {
     const data = await API.itemdelete(item.item_id, item.selected_color_id);
-    console.log(data);
     if (data?.data.validate.code === "delete") {
       alert(data.data.validate.message);
     } else {
@@ -30,22 +30,9 @@ const StockListPage = () => {
     // selected_color_id 저장
     const color_id = e.target.value;
     item.selected_color_id = color_id;
-
     filteredStock(item);
-    console.log(item);
     setStockList((prev) => [...prev]);
   };
-
-  // 재고 조회 랜더링
-  useEffect(() => {
-    const getStockList = async () => {
-      const data = await API.getstocklist();
-      setStockList(data.data.data.content);
-      console.log(data.data.data.content);
-    };
-    getStockList();
-  }, []);
-  // 재고 조회 랜더링
 
   const onChangeStockButton = async (item) => {
     const data = await API.updatestock(
@@ -60,6 +47,14 @@ const StockListPage = () => {
     }
   };
 
+  // useEffect
+  useEffect(() => {
+    const getStockList = async () => {
+      const data = await API.getstocklist();
+      setStockList(data.data.data.content);
+    };
+    getStockList();
+  }, []);
   return (
     <>
       <div className="shopping-basket">

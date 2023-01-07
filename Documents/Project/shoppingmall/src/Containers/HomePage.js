@@ -26,7 +26,6 @@ const HomePage = () => {
             <div
               className="homepage__right--icon"
               onClick={() => {
-                console.log(slide);
                 setSlide(slide + 1);
               }}
             >
@@ -53,7 +52,6 @@ const HomePage = () => {
             <div
               className="homepage__left--icon"
               onClick={() => {
-                console.log(slide);
                 setSlide(slide - 1);
               }}
             >

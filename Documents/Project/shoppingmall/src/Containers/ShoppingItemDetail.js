@@ -4,18 +4,20 @@ import API from "../API/Api";
 import StyledButton from "../Components/StyledButton";
 
 const ShoppingItemDetail = () => {
+  //token
+  const token = localStorage.getItem("token");
   //hook
   const itemColor = useRef();
   const itemCount = useRef();
-  const token = localStorage.getItem("token");
   const { item_id } = useParams();
+  //state
   const [itemData, setItemData] = useState({
     itemColorList: [],
     item_id: "",
     name: "",
     price: "",
   });
-
+  //function
   const countLimit = (number) => {
     const result = [<option key="0">-</option>];
     for (let i = 1; i <= number; i++) {
@@ -43,11 +45,11 @@ const ShoppingItemDetail = () => {
       alert("옵션을 선택해 주세요");
     }
   };
+  //useEffect
   useEffect(() => {
     const getItem = async () => {
       const data = await API.getitem(item_id);
       setItemData(data);
-      console.log(data);
     };
     getItem();
   }, [item_id]);
@@ -102,7 +104,6 @@ const ShoppingItemDetail = () => {
                 name="color"
                 value={itemData.itemColorList.color}
                 ref={itemColor}
-                onChange={() => console.log(itemColor.current.value)}
               >
                 <option key="0">-</option>
                 {itemData.itemColorList.map((colorData) => (

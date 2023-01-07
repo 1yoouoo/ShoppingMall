@@ -9,18 +9,18 @@ const ShopingPage = () => {
   const categoryList = [{ name: "ALL" }, { name: "TOP" }, { name: "BOTTOM" }];
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsData, setItemsData] = useState([]);
-  useEffect(() => {
-    API.getitems(currentPage - 1).then((data) => {
-      data && setItemsData(data);
-    });
-  }, [currentPage]);
 
   //function
   const onClickPageNumber = (e) => {
     let pageNuberClick = e.target.innerHTML;
     setCurrentPage(pageNuberClick);
   };
-
+  //useEffect
+  useEffect(() => {
+    API.getitems(currentPage - 1).then((data) => {
+      data && setItemsData(data);
+    });
+  }, [currentPage]);
   return (
     <>
       <div className="shopping-category">

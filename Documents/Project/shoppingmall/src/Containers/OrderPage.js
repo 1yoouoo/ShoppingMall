@@ -6,12 +6,11 @@ const OrderPage = () => {
   const token = localStorage.getItem("token");
   // state
   const [orderList, setOrderList] = useState([]);
-
+  //useEffect
   useEffect(() => {
     // 첫 렌더링 시 장바구니 조회
     const getOrderList = async () => {
       const data = await API.getorderlist(token);
-      console.log(data);
       setOrderList(data.data.data.content);
     };
 
@@ -22,7 +21,6 @@ const OrderPage = () => {
     <>
       <div className="shopping-basket">
         <div className="shopping-basket__form">
-          {orderList && console.log(orderList)}
           {orderList &&
             orderList?.map((orderItem) => {
               return (

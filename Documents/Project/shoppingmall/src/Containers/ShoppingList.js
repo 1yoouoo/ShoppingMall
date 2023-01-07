@@ -1,10 +1,11 @@
 import { useNavigate } from "react-router-dom";
 
 const ShoppingList = ({ itemsData }) => {
-  const sortList = ["LOW PRICE", "HIGH PRICE", "NEW", "HIT"];
-
+  //hook
   const navigate = useNavigate();
-
+  //state
+  const sortList = ["LOW PRICE", "HIGH PRICE", "NEW", "HIT"];
+  //function
   const onClickTest = (item_id) => {
     navigate(`/shop/${item_id}`);
   };

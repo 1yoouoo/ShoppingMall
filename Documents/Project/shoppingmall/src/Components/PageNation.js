@@ -1,6 +1,5 @@
 const PageNation = ({ totalPages, onClickPageNumber }) => {
   //function
-
   const pageNation = () => {
     let pageNumber = [];
     for (let page = 1; page <= totalPages; page++) {
@@ -24,9 +23,7 @@ const PageNation = ({ totalPages, onClickPageNumber }) => {
           <path d="M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z" />
         </svg>
       </span>
-      {/* 마지막 값 -> totalpage: int 만 받고 배열을 생성할 수 있을까 ?
-      ex) totalpage = 5 -> list =[1, 2, 3, 4, 5]...
-      가능하다면 [...totalPage].map((i) => <>{i}</>) 로 가독성 올리자 */}
+
       {pageNation()}
 
       <span className="page__next-page">

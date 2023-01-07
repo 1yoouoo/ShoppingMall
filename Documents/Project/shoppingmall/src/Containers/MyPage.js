@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import API from "../API/Api";
 
 const MyPage = () => {
+  //token
   const token = localStorage.getItem("token");
+  //state
   const [isChangedUserData, setIsChangedUserData] = useState(false);
   const [userData, setUserData] = useState({
     login_id: "",
@@ -30,7 +32,6 @@ const MyPage = () => {
       alert(data.data.validate.message);
       setIsChangedUserData(!isChangedUserData);
     }
-    console.log(data);
   };
   const onChange = (e) => {
     setUserData({
@@ -38,6 +39,7 @@ const MyPage = () => {
       [e.target.name]: e.target.value,
     });
   };
+  //useEffect
   useEffect(() => {
     const getUserApi = async () => {
       const data = await API.getuser(token);

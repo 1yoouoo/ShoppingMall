@@ -5,6 +5,7 @@ import StyledButton from "../Components/StyledButton";
 import StyledSmallButton from "../Components/StyledSmallButton";
 
 const ShoppingBasketPage = () => {
+  //token
   const token = localStorage.getItem("token");
   //state
   const navigate = useNavigate();
@@ -12,7 +13,6 @@ const ShoppingBasketPage = () => {
   const [checkedItemList, setCheckedItemList] = useState([]);
   const [checkedIdList, setCheckedIdList] = useState([]);
   const [selectedItemsPrice, setSelectedItemsPrice] = useState(0);
-  //hook
 
   //function
   const handleCheckedAll = (checked) => {
@@ -122,7 +122,7 @@ const ShoppingBasketPage = () => {
     }
     console.log(basketItemsList);
   };
-
+  //useEffect
   useEffect(() => {
     // 장바구니 체크박스
     calculatePrice();
