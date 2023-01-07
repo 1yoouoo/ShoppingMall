@@ -101,11 +101,11 @@ const ShoppingBasketPage = () => {
       setBasketItemsList(
         basketItemsList.filter((el) => el.cart_item_id !== item.cart_item_id)
       );
+      setCheckedIdList([]);
+      setCheckedItemList([]);
     } else {
       alert(data.data.error.message);
     }
-    setCheckedIdList([]);
-    setCheckedItemList([]);
   };
   const orderBaskets = async () => {
     const data = await API.orderbasket(token, checkedIdList);
@@ -115,6 +115,8 @@ const ShoppingBasketPage = () => {
       setBasketItemsList(
         basketItemsList.filter((el) => !checkedIdList.includes(el.cart_item_id))
       );
+      setCheckedIdList([]);
+      setCheckedItemList([]);
     } else {
       alert(data.data.error.message);
     }
