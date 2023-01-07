@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import HeaderRight from "../Components/HeaderRight";
 import MainLogo from "../Components/MainLogo";
@@ -12,23 +12,24 @@ const Header = () => {
   const [menuToggle, setMenuToggle] = useState(false);
   const [searchToggle, setSearchToggle] = useState(false);
   const shopList = [
-    "ALL PADDING 5%",
-    "ALL",
-    "NEW 5%",
-    "BEST",
-    "OUTER",
-    "TOP",
-    "BOTTOM",
-    "SALE",
-    "ACC",
+    { ALL: "ALL" },
+    { "NEW 5%": "NEW 5%" },
+    { BEST: "BEST" },
+    { OUTER: "OUTER" },
+    { TOP: "TOP" },
+    { BOTTOM: "BOTTOM" },
+    { SALE: "SALE" },
+    { ACC: "ACC" },
   ];
-  const communityList = ["NOTICE", "Q&A", "REVIEW"];
+  const communityList = [
+    { NOTICE: "NOTICE" },
+    { "Q&A": "Q&A" },
+    { REVIEW: "REVIEW" },
+  ];
   const myPageList = [
-    "주문조회",
-    "관심상품",
-    "적립금",
-    "배송조회",
-    "상품 등록하기",
+    { 주문조회: "orderpage" },
+    { 관심상품: "wishlist" },
+    { 상품등록하기: "productregistration" },
   ];
 
   //function

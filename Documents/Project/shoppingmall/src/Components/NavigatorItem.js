@@ -17,10 +17,10 @@ const NavigatorItem = ({ title, items, className }) => {
           return (
             <li
               className="navigator-item__item"
-              key={item}
-              onClick={() => navigate("/productregistration")}
+              key={Object.keys(item)}
+              onClick={() => navigate(`${Object.values(item)}`)}
             >
-              {item}
+              {Object.keys(item)}
             </li>
           );
         })}
