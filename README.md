@@ -49,7 +49,11 @@
  + 설계 이후에 바로 task 관리 엑셀을 생성하여 관리한다.
  
  
- 
+![Large GIF (640x468)](https://user-images.githubusercontent.com/79697414/213917269-bdad48e2-a598-4e7c-9fd6-c4dc0d85de64.gif)
+
+
+ ![Large GIF (640x468)](https://user-images.githubusercontent.com/79697414/213917259-6c155097-ce60-4989-a185-791e52209a12.gif)
+
 ## 사용된 기술
 - react
 - axios
